@@ -1,0 +1,95 @@
+@import 'neat';
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url(glyphicons-halflings-regular.woff);
+}
+
+#background-wrapper {
+  $padding: 20px;
+  @include span-columns(12);
+  @include pad();
+  background: url('/assets/landing_background.png') no-repeat center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  float: none;
+  text-align: center;
+  margin:0;
+
+  .title-box {
+    @include outer-container;
+    position: relative;
+    display: flex;
+    text-align: center;
+    width: 690px;
+
+    h1 {
+      font-size: 8em;
+      color: white;
+      display: inline-block;
+    }
+
+    span.glyphicon {
+      color: white;
+      font-size: 5em;
+      margin-left: 15px;
+      margin-top: 80px;
+      display: inline-block;
+    }
+
+  }
+
+  #sign-in-box {
+    @include outer-container;
+    padding-left: $padding*2;
+    padding-right: $padding*2;
+
+    .landing-button {
+      @include span-columns(4);
+
+      .button-large {
+        @include button(flat, $dark-green);
+        padding: 0.7em 3.5em;
+        font-size: 1.4em;
+        border-radius: 7px;
+        color: white;
+        font-weight: 300;
+
+      }
+      #fb-login-button {
+        font-size: 0.8em;
+        padding: 1.3em 0.5em;
+        color: white;
+        float:right;
+        margin-top: -16px;
+      }
+      #facebook-button {
+        padding: 0.7em 0.4em;
+        font-size: 1.4em;
+        height: 60px;
+        background: #2d4373;
+
+      }
+      .icon-facebook-square {
+        font-size: 45px;
+        float: left;
+        margin-top: -11px;
+        height: 56px;
+        border-right: 1px solid #e6e6e6;
+        padding-right: 7px;
+      }
+    }
+
+  }
+  .sub-heading {
+    @include outer-container;
+    h4 {
+      font-size: 2em;
+      font-weight: 400;
+    }
+  }
+
+}

@@ -1,0 +1,17 @@
+#background-wrapper
+  .title-box
+    %h1 ChessMeet
+    %span.glyphicon.glyphicon-knight
+  #sign-in-box
+
+    .landing-button{style: 'text-align:right;'}
+      = link_to 'Log in', '#', id: 'sign-in-button', class: 'button-large'
+    .landing-button
+      = link_to 'Sign Up', '#', id: 'sign-up-button', class: 'button-large'
+    .landing-button{style: 'text-align: left;'}
+      .button-large{id: 'facebook-button'}
+        %span.icon-facebook-square
+        = link_to ' Sign in with Facebook', '#', id: 'fb-login-button'
+
+  .sub-heading
+    %h4 One-on-one mentoring with real chess masters
