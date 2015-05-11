@@ -1,5 +1,5 @@
 $(function() {
-  $(":file").filestyle({buttonText: "Upload image", buttonBefore: true});
+  $(":file").filestyle({buttonText: " Upload avatar", buttonBefore: true});
 
   $('#pictureInput').on('change', function(event) {
    var files = event.target.files;

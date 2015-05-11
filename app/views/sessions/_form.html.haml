@@ -1,14 +1,17 @@
 .form-group
   %h1{style: 'text-align: center;'} Sign in
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .field{style: 'padding: 10px;'}
-      = f.label :name, class: 'control-label'
-      %br
-      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'name'
 
-    .field{style: 'padding: 15px;'}
-      = f.label :email, class: 'control-label'
-      %br
-      = f.email_field :email, class: 'form-control', placeholder: 'e-mail'
+    .field.inner-addon.left-addon
+      -# = f.label :email, class: 'control-label'
+      -# %br
+      %i.glyphicon.glyphicon-user
+      = f.email_field :email, class: 'form-control', placeholder: 'Your Email'
+
+    .field.inner-addon.left-addon
+      -# = f.label :password, class: 'control-label'
+      -# %br
+      %i.glyphicon.glyphicon-lock
+      = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Your Password'
 
   = render "devise/shared/links"

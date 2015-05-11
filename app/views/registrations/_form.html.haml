@@ -2,37 +2,38 @@
   %h1{style: 'text-align: center;'} Sign up
 
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    .field
-      = f.label :name, class: 'control-label'
-      %br
-      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'name'
+    .field.inner-addon.left-addon
+      -# = f.label :name, class: 'control-label'
+      -# %br
+      %i.glyphicon.glyphicon-user
+      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name'
+
+    .field.inner-addon.left-addon
+      -# = f.label :email, class: 'control-label'
+      -# %br
+      %i.glyphicon.glyphicon-envelope
+      = f.email_field :email, class: 'form-control', placeholder: 'Your Email'
+
+    .field.inner-addon.left-addon
+      -# = f.label :password, class: 'control-label'
+      -# %br
+      %i.glyphicon.glyphicon-lock
+      = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Your Password'
+
+    .field.inner-addon.left-addon
+      -# = f.label :password_confirmation, label: 'Confirmation', class: 'control-label'
+      -# %br
+      %i.glyphicon.glyphicon-repeat
+      = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: 'Confirm Password'
 
     .field
-      = f.label :email, class: 'control-label'
-      %br
-      = f.email_field :email, class: 'form-control', placeholder: 'e-mail'
-
-    .field
-      = f.label :password, class: 'control-label'
-      %br
-      - if @validatable
-        %em #{@minimum_password_length} characters minimum
-        %br
-      = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'password'
-
-    .field
-      = f.label :password_confirmation, label: 'Confirmation', class: 'control-label'
-      %br
-      = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: 'password'
-
-    .field
-      = f.label :profile_photo
-      %br
-      = f.file_field :avatar, id: 'pictureInput', class: 'filestyle', placeholder: 'my_photo.png'
+      -# = f.label :profile_photo
+      -# %br
+      = f.file_field :avatar, id: 'pictureInput', class: 'filestyle'
 
     .actions{style: 'padding-left: 19px; height: 120px;'}
       = f.submit 'Sign up', class: 'large-button'
-      #target{style: 'border-radius: 2px; margin-top: 15px; float: left; width: 100px; height: 100px; background: #e4e4e4; border: 1px solid #b4b4b4;'}
+      #target
         %img{src: '/assets/missing.png', width:'100'}
 
 %script{src: '/assets/devise.js'}

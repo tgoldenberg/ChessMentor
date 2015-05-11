@@ -1,12 +1,63 @@
+
+
 .form-group {
+    /* enable absolute positioning */
+  .inner-addon {
+      position: relative;
+  }
+
+  /* style icon */
+  .inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+
+  /* align icon */
+  .left-addon .glyphicon  { left:  initial;}
+  .right-addon .glyphicon { right: 0px;}
+
+  /* add padding  */
+  .left-addon input  { padding-left:  30px; }
+  .right-addon input { padding-right: 30px; }
+  .buttonText {
+    font-weight: 400;
+  }
+  .glyphicon {
+    top: inherit;
+    color: #b4b4b4;
+  }
+
+  #target {
+    margin-top: 5px;
+    margin-left: -10px;
+    border-radius: 2px;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #e4e4e4;
+    border: 1px solid #b4b4b4;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 2.5em;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #b4b4b4;
+    width: 80%;
+    margin-left: 10%;
+  }
   .field {
     padding: 10px;
+    margin-left: 10%;
+  }
+  .actions {
+    margin-left: 10%;
   }
   .large-button {
     @include button(flat, $action-color);
     width: 214px;
     height: 50px;
-    margin-right: 100px;
+    margin-right: 23%;
     margin-top: 20px;
     font-size: 1.3em;
     font-weight: 400;
@@ -22,14 +73,16 @@
     font-size: 1em;
   }
   .avatar-control {
-    width: 47%;
+    width: 60%;
     border-radius: 3px;
     height: 30px;
     display: inline-block;
   }
   .btn-default {
     box-shadow: 1px 2px 2px #999;
+    border: 1px solid #f7f7f7;
     padding: 8px;
+    color: #777;
   }
 }
 $base-border-color: gainsboro !default;
@@ -137,7 +190,7 @@ label img {
   }
 
   @include media($large-screen) {
-    width: 60%;
+    width: 50%;
   }
 
   h1 {
