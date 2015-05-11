@@ -1,0 +1,14 @@
+%header.navigation{role: 'banner'}
+  .navigation-wrapper
+
+    %nav{role: 'navigation'}
+      %ul.navigation-menu.show{id: 'js-navigation-menu'}
+        %li.nav-link
+          = link_to 'Home', root_path
+
+    .navigation-tools
+      %ul.navigation-menu.show{id: 'js-navigation-menu'}
+        %li.nav-link
+          = link_to 'Account', edit_user_registration_path
+        %li.nav-link
+          = link_to 'Sign out', destroy_user_session_path, method: :delete

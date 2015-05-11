@@ -1,0 +1,39 @@
+.top-content-wrapper {
+  height: 400px;
+  .left-side-wrapper {
+    @include span-columns(8);
+    .message-wrapper {
+      height: 150px;
+      background: blue;
+    }
+    .user-info-wrapper {
+      width: 100%;
+      height: 250px;
+      .profile-wrapper {
+        @include span-columns(3 of 8);
+        background: green;
+        height: 250px;
+      }
+      .games-wrapper {
+        @include span-columns(5 of 8);
+        background: yellow;
+        height: 250px;
+      }
+    }
+  }
+
+
+  .right-side-wrapper {
+    @include span-columns(4);
+    height: 400px;
+    background: red;
+    .search-wrapper {}
+  }
+
+}
+
+.mentor-carousel-wrapper {
+  height: 300px;
+  background: grey;
+}
+.footer {}
