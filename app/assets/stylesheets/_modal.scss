@@ -27,6 +27,21 @@
     top: inherit;
     color: #b4b4b4;
   }
+  .sign-in-header {
+    width: 80%;
+    height: 100px;
+    border-bottom: 1px solid #a7a7a7;
+    position: relative;
+    display: flex;
+    margin-left: 11%;
+  }
+  #header-glyph {
+    color: black;
+    font-size: 2.8em;
+    float: left;
+    margin-top: 36px;
+
+  }
 
   #target {
     margin-top: 5px;
@@ -40,11 +55,14 @@
   }
   h1 {
     font-weight: bold;
-    font-size: 2.5em;
+    font-size: 3em;
     padding-bottom: 16px;
-    border-bottom: 1px solid #b4b4b4;
-    width: 80%;
-    margin-left: 10%;
+    padding-right: 10px;
+    display: inline-block;
+    float: left;
+    margin-left: 26%;
+    letter-spacing: 2.4px;
+    font-family: $third-font;
   }
   .field {
     padding: 10px;
@@ -52,6 +70,10 @@
   }
   .actions {
     margin-left: 10%;
+    height: 100px;
+  }
+  .shared-links {
+    margin-left: 11%;
   }
   .large-button {
     @include button(flat, $action-color);
@@ -63,6 +85,11 @@
     font-weight: 400;
     float: right;
     background-color: $dark-green;
+  }
+  .large-button.sign-in {
+    margin-left: 22.5%;
+    margin-right: 0;
+    float: none;
   }
   .large-button:hover:not(:disabled) {
     background-color: $aqua-green;
@@ -85,23 +112,6 @@
     color: #777;
   }
 }
-$base-border-color: gainsboro !default;
-$base-border-radius: 3px !default;
-$base-background-color: white !default;
-$base-font-size: 1em !default;
-$base-line-height: 1.5em !default;
-$action-color: #477DCA !default;
-$dark-gray: #333 !default;
-$light-gray: #DDD !default;
-$medium-screen: em(640) !default;
-$large-screen: em(860) !default;
-$base-font-color: $dark-gray !default;
-$modal-padding: 3em;
-$modal-background: $base-background-color;
-$modal-close-color: $light-gray;
-$modal-image-height: 135px;
-$modal-image-width: $modal-image-height;
-$modal-trigger-image-width: 300px;
 
 label {
   cursor: pointer;

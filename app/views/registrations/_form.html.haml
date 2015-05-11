@@ -1,40 +1,35 @@
 .form-group
-  %h1{style: 'text-align: center;'} Sign up
+  .sign-in-header
+    %h1{style: 'text-align: center;'} Sign up
+    %i.glyphicon.glyphicon-knight{id: 'header-glyph'}
 
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    .field.inner-addon.left-addon
-      -# = f.label :name, class: 'control-label'
-      -# %br
+    .field.inner-addon.left-addon{style: 'margin-top: 15px;'}
       %i.glyphicon.glyphicon-user
       = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name'
 
     .field.inner-addon.left-addon
-      -# = f.label :email, class: 'control-label'
-      -# %br
       %i.glyphicon.glyphicon-envelope
       = f.email_field :email, class: 'form-control', placeholder: 'Your Email'
 
     .field.inner-addon.left-addon
-      -# = f.label :password, class: 'control-label'
-      -# %br
       %i.glyphicon.glyphicon-lock
       = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Your Password'
 
     .field.inner-addon.left-addon
-      -# = f.label :password_confirmation, label: 'Confirmation', class: 'control-label'
-      -# %br
       %i.glyphicon.glyphicon-repeat
       = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: 'Confirm Password'
 
     .field
-      -# = f.label :profile_photo
-      -# %br
       = f.file_field :avatar, id: 'pictureInput', class: 'filestyle'
 
     .actions{style: 'padding-left: 19px; height: 120px;'}
       = f.submit 'Sign up', class: 'large-button'
       #target
         %img{src: '/assets/missing.png', width:'100'}
+
+  .shared-links
+    = render "devise/shared/links"
 
 %script{src: '/assets/devise.js'}
 %script{src: '/assets/filestyle.js'}

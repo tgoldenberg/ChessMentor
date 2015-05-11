@@ -1,17 +1,17 @@
 .form-group
-  %h1{style: 'text-align: center;'} Sign in
+  .sign-in-header{style: 'width: 80%; border-bottom: 1px solid #e6e6e6;'}
+    %h1{style: 'text-align: center; display: inline-block;'} Sign in
+    %i.glyphicon.glyphicon-knight{id: 'header-glyph', style: 'display: inline-block;'}
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-    .field.inner-addon.left-addon
-      -# = f.label :email, class: 'control-label'
-      -# %br
+    .field.inner-addon.left-addon{style: 'margin-top: 15px;'}
       %i.glyphicon.glyphicon-user
       = f.email_field :email, class: 'form-control', placeholder: 'Your Email'
 
     .field.inner-addon.left-addon
-      -# = f.label :password, class: 'control-label'
-      -# %br
       %i.glyphicon.glyphicon-lock
       = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Your Password'
-
-  = render "devise/shared/links"
+    .actions
+      = f.submit 'Log in', class: 'large-button sign-in'
+  .shared-links
+    = render "devise/shared/links"
