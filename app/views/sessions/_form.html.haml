@@ -1,0 +1,14 @@
+.form-group
+  %h1{style: 'text-align: center;'} Sign in
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field{style: 'padding: 10px;'}
+      = f.label :name, class: 'control-label'
+      %br
+      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'name'
+
+    .field{style: 'padding: 15px;'}
+      = f.label :email, class: 'control-label'
+      %br
+      = f.email_field :email, class: 'form-control', placeholder: 'e-mail'
+
+  = render "devise/shared/links"

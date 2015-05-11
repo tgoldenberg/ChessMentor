@@ -5,13 +5,14 @@
   #sign-in-box
 
     .landing-button{style: 'text-align:right;'}
-      = link_to 'Log in', '#', id: 'sign-in-button', class: 'button-large'
+      = link_to 'Log in', new_user_session_path, remote: true, id: 'sign-in-button', class: 'button-large'
     .landing-button
-      = link_to 'Sign Up', '#', id: 'sign-up-button', class: 'button-large'
+      = link_to 'Sign Up', new_user_registration_path , remote: true, id: 'sign-up-button', class: 'button-large'
+
     .landing-button{style: 'text-align: left;'}
       .button-large{id: 'facebook-button'}
         %span.icon-facebook-square
-        = link_to ' Sign in with Facebook', '#', id: 'fb-login-button'
+        = link_to ' Sign in with Facebook', user_omniauth_authorize_path(:facebook), id: 'fb-login-button'
 
   .sub-heading
     %h4 One-on-one mentoring with real chess masters
