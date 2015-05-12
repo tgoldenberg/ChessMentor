@@ -48,33 +48,11 @@
           %p{style: 'padding-left: 54px;'} vs. BobbyD
 
   .right-side-wrapper
-    .search-wrapper
-      .search-header
-        %i.glyphicon.glyphicon-bishop
-        %p Search Mentors
-        %div{style: 'clear: both;'}
-
-      %form.search-bar{role:'search'}
-
-        = text_field :search, params[:search], class: 'form-control', placeholder: 'search mentors', type: 'search', id: 'mentor-search-bar'
-        %button{type: 'submit', id: 'search-submit', style: 'display: inline-block;'}
-          %img{src: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png'}
-        .dropdown
-          .dropdown-container
-            %p.dropdown-button Search By
-            %ul.dropdown-menu.dropdown-select
-              %li Official Ranking
-              %li User Ranking
-              %li All
-              %li Price
-        .table-wrapper
-          %table.tables
-            %tbody{id: 'mentor-search-table'}
-              - @mentors.each do |mentor|
-                %tr
-                  %td #{mentor.name}
-                  %td
-                    %span.badge-success #{mentor.official_ranking}
+    - if current_user.class == Mentor
+      = render 'pages/partials/user_search'
+    - else
+      = render 'pages/partials/mentor_search'
+    
 
 %h2{id: 'mentor-header', style: 'text-align: center; color: #333;'} Mentors
 .mentor-carousel-wrapper
@@ -89,7 +67,7 @@
         .mentor-wrapper
           %h2 #{mentor.name}
           %p.border-bottom Ranking: #{mentor.official_ranking}
-          %p Cost per class: #{mentor.price}
+          %p Cost per class: #{number_to_currency(mentor.price)}
           = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
     %figure.item
@@ -97,7 +75,7 @@
         .mentor-wrapper
           %h2 #{mentor.name}
           %p.border-bottom Ranking: #{mentor.official_ranking}
-          %p Cost per class: #{mentor.price}
+          %p Cost per class: #{number_to_currency(mentor.price)}
           = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
     %figure.item
@@ -105,7 +83,7 @@
         .mentor-wrapper
           %h2 #{mentor.name}
           %p.border-bottom Ranking: #{mentor.official_ranking}
-          %p Cost per class: #{mentor.price}
+          %p Cost per class: #{number_to_currency(mentor.price)}
           = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
     .controls

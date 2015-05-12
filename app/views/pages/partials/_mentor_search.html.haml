@@ -1,0 +1,27 @@
+.search-wrapper
+  .search-header
+
+    %i.glyphicon.glyphicon-bishop
+    %p Search Mentors
+    %div{style: 'clear: both;'}
+
+  %form.search-bar{role:'search'}
+    = text_field :search, params[:search], class: 'form-control', placeholder: 'search mentors', type: 'search', id: 'mentor-search-bar'
+    %button{type: 'submit', id: 'search-submit', style: 'display: inline-block;'}
+      %img{src: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png'}
+    .dropdown
+      .dropdown-container
+        %p.dropdown-button Search By
+        %ul.dropdown-menu.dropdown-select
+          %li Official Ranking
+          %li User Ranking
+          %li All
+          %li Price
+    .table-wrapper
+      %table.tables
+        %tbody{id: 'mentor-search-table'}
+          - @mentors.each do |mentor|
+            %tr
+              %td #{mentor.name}
+              %td
+                %span.badge-success #{mentor.official_ranking}

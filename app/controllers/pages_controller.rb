@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @mentors = Mentor.all
     @user = User.new
+    @users = User.all
   end
 
   def search
