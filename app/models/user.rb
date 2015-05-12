@@ -1,15 +1,18 @@
 class User < ActiveRecord::Base
-  searchkick word_start: [:name]
   attr_accessor :avatar
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   crop_attached_file :avatar
 
+  has_many :conversations, as: :sender, foreign_key: 'sender_id'
+  has_many :conversations, as: :recipient, foreign_key: 'recipient_id'
+  has_many :received_messages, class: 'Message', foreign_key: 'recipient_id'
+  has_many :sent_messages, class: 'Message', foreign_key: 'sender_id'
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
