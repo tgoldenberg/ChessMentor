@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   get 'pages/contact'
   get 'pages/terms'
 
+  resources :users do
+    collection do
+      get 'search'
+    end
+  end
+
 end

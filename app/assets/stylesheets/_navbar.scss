@@ -24,11 +24,15 @@ header.navigation {
    border-bottom: 1px solid darken($navigation-background, 10);
    min-height: $navigation-height;
    width: 100%;
+   width: 1200px;
+   height: 60px;
+   overflow: auto;
    z-index: 999;
 
    .navigation-wrapper {
      @include clearfix;
      @include outer-container;
+
      position: relative;
      z-index: 9999;
    }

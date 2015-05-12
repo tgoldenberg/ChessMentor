@@ -5,7 +5,7 @@
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
     .field.inner-addon.left-addon{style: 'margin-top: 15px;'}
-      %i.glyphicon.glyphicon-user
+      %i.glyphicon.glyphicon-user{style: 'top: 15px; left: 7px;'}
       = f.email_field :email, class: 'form-control', placeholder: 'Your Email'
 
     .field.inner-addon.left-addon

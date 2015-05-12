@@ -2,11 +2,58 @@
 
 .top-content-wrapper
   .left-side-wrapper
+    -# content for message to user
     .message-wrapper
+      .photo-wrapper
+        .round-photo-wrapper
+          = image_tag current_user.avatar.url(:thumb), width: '104', class: 'thumb-profile'
+      .greeting-wrapper
+        %h2.greeting Hi, #{current_user.name}!
+        %p.greeting-content You have not played any games yet. Select a mentor to setup a game and personal instruction.
+
+    -#  content for user profile
     .user-info-wrapper
       .profile-wrapper
+        .profile-header
+          %i.glyphicon.glyphicon-user
+          %p My Profile
+          %div{style: 'clear: both;'}
+        %table.tables
+          %tbody
+            %tr
+              %td #{current_user.name}
+            %tr
+              %td City: #{current_user.city}
+            %tr
+              %td Country: #{current_user.country}
+            %tr
+              %td Ranking: #{current_user.official_ranking}
+            %tr
+              %td Games played:
+
       .games-wrapper
+        .games-header
+          %i.glyphicon.glyphicon-tower
+          %p My Games
+          %div{style: 'clear: both;'}
+        .games-holder
+          .board{id: 'board'}
+          .board{id: 'board2'}
+          .board{id: 'board3'}
+          %div{style: 'clear: both;'}
+        .games-description
+          .top-row
+          %p{style: 'padding-left: 39px;'} vs. Vlad P
+          %p{style: 'padding-left: 45px;'} vs. Arnold
+          %p{style: 'padding-left: 54px;'} vs. BobbyD
+
   .right-side-wrapper
     .search-wrapper
+      .search-header
+        %i.glyphicon.glyphicon-bishop
+        %p Search Mentors
+        %div{style: 'clear: both;'}
 .mentor-carousel-wrapper
 .footer
+
+%script{src: '/assets/set_board.js'}

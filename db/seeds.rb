@@ -5,3 +5,120 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def sample_file(filename)
+  File.new("test/fixtures/#{filename}")
+end
+
+
+Mentor.create(
+  name: 'Vladamir',
+  email: 'vlad@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/vladamir_putin.jpg"),
+  city: 'Moscow',
+  country: 'Russia',
+  official_ranking: 1600,
+  user_ranking: 3.5
+
+)
+Mentor.create(
+  name: 'BobbyD',
+  email: 'dylan@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/bob_dylan.jpg"),
+  city: 'New York City',
+  country: 'USA',
+  official_ranking: 1500,
+  user_ranking: 5.0
+)
+Mentor.create(
+  name: 'BobbyF',
+  email: 'fischer@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/bobby.jpeg"),
+  city: 'Unknown',
+  country: 'Phillipines',
+  official_ranking: 2600,
+  user_ranking: 1.0
+)
+Mentor.create(
+  name: 'Arnold',
+  email: 'arnold@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/arnold.jpeg"),
+  city: 'Los Angeles',
+  country: 'USA',
+  official_ranking: 1300,
+  user_ranking: 3.0
+)
+Mentor.create(
+  name: 'GarryK',
+  email: 'kasparov@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/garry_kasparov.jpg"),
+  city: 'Paris',
+  country: 'France',
+  official_ranking: 2800,
+  user_ranking: 4.0
+)
+Mentor.create(
+  name: 'Magneto',
+  email: 'magneto@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/magneto.jpg"),
+  city: 'Buenos Aires',
+  country: 'Argentina',
+  official_ranking: 2700,
+  user_ranking: 2.0
+)
+Mentor.create(
+  name: 'OldMan',
+  email: 'oldman@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/old_man.jpg"),
+  city: 'New Haven',
+  country: 'USA',
+  official_ranking: 2600,
+  user_ranking: 5.0
+)
+Mentor.create(
+  name: 'JuditP',
+  email: 'judit@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/judit_polgar.jpg"),
+  city: 'Budapest',
+  country: 'Hungary',
+  official_ranking: 2800,
+  user_ranking: 4.5
+)
+Mentor.create(
+  name: 'MagnusC',
+  email: 'magnus@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/magnus_carlson.jpg"),
+  city: 'Oslo',
+  country: 'Norway',
+  official_ranking: 2900,
+  user_ranking: 3.5
+)
+Mentor.create(
+  name: 'PStewart',
+  email: 'stewart@gmail.com',
+  password: 'password',
+  password_confirmation: 'password',
+  avatar: sample_file("assets/patrick_stewart.jpg"),
+  city: 'Hollywood',
+  country: 'USA',
+  official_ranking: 2300,
+  user_ranking: 4.5
+)
