@@ -20,6 +20,7 @@ Mentor.create(
   city: 'Moscow',
   country: 'Russia',
   official_ranking: 1600,
+  price: 10,
   user_ranking: 3.5
 
 )
@@ -31,6 +32,7 @@ Mentor.create(
   avatar: sample_file("assets/bob_dylan.jpg"),
   city: 'New York City',
   country: 'USA',
+  price: 10,
   official_ranking: 1500,
   user_ranking: 5.0
 )
@@ -42,6 +44,7 @@ Mentor.create(
   avatar: sample_file("assets/bobby.jpeg"),
   city: 'Unknown',
   country: 'Phillipines',
+  price: 10,
   official_ranking: 2600,
   user_ranking: 1.0
 )
@@ -53,6 +56,7 @@ Mentor.create(
   avatar: sample_file("assets/arnold.jpeg"),
   city: 'Los Angeles',
   country: 'USA',
+  price: 10,
   official_ranking: 1300,
   user_ranking: 3.0
 )
@@ -64,6 +68,7 @@ Mentor.create(
   avatar: sample_file("assets/garry_kasparov.jpg"),
   city: 'Paris',
   country: 'France',
+  price: 10,
   official_ranking: 2800,
   user_ranking: 4.0
 )
@@ -75,6 +80,7 @@ Mentor.create(
   avatar: sample_file("assets/magneto.jpg"),
   city: 'Buenos Aires',
   country: 'Argentina',
+  price: 10,
   official_ranking: 2700,
   user_ranking: 2.0
 )
@@ -86,6 +92,7 @@ Mentor.create(
   avatar: sample_file("assets/old_man.jpg"),
   city: 'New Haven',
   country: 'USA',
+  price: 10,
   official_ranking: 2600,
   user_ranking: 5.0
 )
@@ -97,6 +104,7 @@ Mentor.create(
   avatar: sample_file("assets/judit_polgar.jpg"),
   city: 'Budapest',
   country: 'Hungary',
+  price: 10,
   official_ranking: 2800,
   user_ranking: 4.5
 )
@@ -108,9 +116,10 @@ Mentor.create(
   avatar: sample_file("assets/magnus_carlson.jpg"),
   city: 'Oslo',
   country: 'Norway',
+  price: 10,
   official_ranking: 2900,
   user_ranking: 3.5
-)
+  )
 Mentor.create(
   name: 'PStewart',
   email: 'stewart@gmail.com',
@@ -119,6 +128,7 @@ Mentor.create(
   avatar: sample_file("assets/patrick_stewart.jpg"),
   city: 'Hollywood',
   country: 'USA',
+  price: 10,
   official_ranking: 2300,
   user_ranking: 4.5
 )

@@ -285,9 +285,48 @@
     }
   }
 }
-
+#mentor-header {
+  font-weight: 600;
+  font-size: 2.3em;
+  letter-spacing: -1px;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
 .mentor-carousel-wrapper {
   height: 300px;
   background: grey;
+  .gallery .item {
+    @include span-columns(12);
+    width: 1200px;
+    background: $dark-green;
+  }
+  .mentor-wrapper {
+    @include span-columns(3 of 12);
+    img {
+      width: 200px;
+      margin-left: 66px;
+    }
+    h2 {
+      font-weight: 300;
+      background: $aqua-green;
+      width: 76%;
+      margin-left: 67px;
+      border-radius: 2px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    p {
+      color: white;
+      margin-left: 75px;
+      margin-top: -13px;
+      font-weight: 300;
+    }
+    p.border-bottom {
+      padding-bottom: 3px;
+      border-bottom: 1px solid #e6e6e6;
+      width: 61%;
+      margin-left: 87px;
+    }
+  }
 }
 .footer {}

@@ -55,8 +55,9 @@
         %div{style: 'clear: both;'}
 
       %form.search-bar{role:'search'}
-        %input{type:'search', placeholder: 'search mentors'}
-        %button{type: 'submit', style: 'display: inline-block;'}
+
+        = text_field :search, params[:search], class: 'form-control', placeholder: 'search mentors', type: 'search', id: 'mentor-search-bar'
+        %button{type: 'submit', id: 'search-submit', style: 'display: inline-block;'}
           %img{src: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png'}
         .dropdown
           .dropdown-container
@@ -68,16 +69,51 @@
               %li Price
         .table-wrapper
           %table.tables
-            %tbody
+            %tbody{id: 'mentor-search-table'}
               - @mentors.each do |mentor|
                 %tr
                   %td #{mentor.name}
                   %td
                     %span.badge-success #{mentor.official_ranking}
 
-
-
+%h2{id: 'mentor-header', style: 'text-align: center; color: #333;'} Mentors
 .mentor-carousel-wrapper
+  .gallery.items-3.autoplay
+    .control-operator{id: 'item-1'}
+    .control-operator{id: 'item-2'}
+    .control-operator{id: 'item-3'}
+
+
+    %figure.item
+      - @mentors.first(4).each do |mentor|
+        .mentor-wrapper
+          %h2 #{mentor.name}
+          %p.border-bottom Ranking: #{mentor.official_ranking}
+          %p Cost per class: #{mentor.price}
+          = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
+
+    %figure.item
+      - @mentors.first(8).last(4).each do |mentor|
+        .mentor-wrapper
+          %h2 #{mentor.name}
+          %p.border-bottom Ranking: #{mentor.official_ranking}
+          %p Cost per class: #{mentor.price}
+          = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
+
+    %figure.item
+      - @mentors.last(4).each do |mentor|
+        .mentor-wrapper
+          %h2 #{mentor.name}
+          %p.border-bottom Ranking: #{mentor.official_ranking}
+          %p Cost per class: #{mentor.price}
+          = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
+
+    .controls
+      %a.control-button{href: '#item-1'}
+      %a.control-button{href: '#item-2'}
+      %a.control-button{href: '#item-3'}
+
+
 .footer
 
 %script{src: '/assets/dropdown.js'}
