@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/contact'
   get 'pages/terms'
+  get 'mentors/highest_ranked'
+  get 'mentors/lowest_price'
+  get 'mentors/best_user_ranking'
 
-  resources :users do
+  resources :mentors do
     collection do
       get 'search'
     end
