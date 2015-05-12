@@ -1,3 +1,4 @@
+@import 'normalize';
 @import 'bourbon';
 @import 'neat';
 @import 'variables';
@@ -13,6 +14,7 @@
 @import 'gallery';
 @import 'jcrop';
 
+
 //= require jcrop
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,10 +24,19 @@ h1, h2, h3, h4, h5, h6 {
 a, a:hover {
   text-decoration: none;
 }
+
 a, p {
   font-family: $secondary-font;
 }
-
+* {
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   padding: 0;
