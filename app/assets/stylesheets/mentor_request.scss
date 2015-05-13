@@ -1,0 +1,97 @@
+.mentor-show-wrapper {
+  width: 500px;
+  height: 520px;
+  @include outer-container;
+  .top-wrapper {
+    @include row(table);
+    height: 125px;
+    background: #F9F9F9;
+    position: relative;
+    display: flex;
+    padding-top: 15px;
+
+
+
+      .photo-wrapper {
+        float: left;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+        background: $aqua-green;
+        border: 2px solid #e6e6e6;
+        margin-right: -1px;
+        border-right: none;
+        height: 100%;
+        margin-top: 5px;
+        width: 159px;
+
+        .round-photo-wrapper {
+          width: 180px;
+
+          img {
+            border-radius: 50%;
+            border: 2px solid $aqua-green;
+          }
+        }
+      }
+      .greeting-wrapper {
+        float: left;
+        margin-top: 5px;
+        padding-right: 35px;
+        height: 100%;
+        background: $aqua-green;
+        border: 2px solid #e6e6e6;
+        border-left: none;
+        width: 136px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 7px;
+
+
+        h2 {
+          margin-top: 5px;
+        }
+
+        p {
+          color: white;
+
+        }
+
+      }
+    }
+    .mentor-info-wrapper {
+      float: right;
+      background: #e4e4e4;
+      padding: 18px;
+      border-radius: 3px;
+      margin-left: 40px;
+      height: 226px;
+      th {
+          p {
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+      }
+    }
+  .button-wrapper {
+    text-align: center;
+    width: 297px;
+    margin-top: 15px;
+  }
+  .button {
+    @include button(flat, $action-color);
+    font-size: 1.3em;
+    font-weight: 400;
+    padding: 11.5px 18px;
+    margin-top: 18px;
+    position: absolute;
+    left: 65px;
+    top: 188px;
+  }
+  .button.small-font {
+    font-size: 1em;
+    padding: 14px 18px;
+    left: 178px;
+    top: 188px;
+    position: absolute;
+
+  }
+}

@@ -11,8 +11,9 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   crop_attached_file :avatar
 
-  has_many :conversations, as: :sender, foreign_key: 'sender_id'
-  has_many :conversations, as: :recipient, foreign_key: 'recipient_id'
+  has_many :conversations, foreign_key: 'sender_id'
+  has_many :received_conversations, class_name: 'Conversation', foreign_key: 'recipient_id'
+
   has_many :received_messages, class: 'Message', foreign_key: 'recipient_id'
   has_many :sent_messages, class: 'Message', foreign_key: 'sender_id'
 

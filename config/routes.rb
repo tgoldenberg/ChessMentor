@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'mentors/highest_ranked'
   get 'mentors/lowest_price'
   get 'mentors/best_user_ranking'
+  get 'mentors/show'
 
   resources :mentors do
     collection do

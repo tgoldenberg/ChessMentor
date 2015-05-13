@@ -52,7 +52,7 @@
       = render 'pages/partials/user_search'
     - else
       = render 'pages/partials/mentor_search'
-    
+
 
 %h2{id: 'mentor-header', style: 'text-align: center; color: #333;'} Mentors
 .mentor-carousel-wrapper
@@ -65,23 +65,23 @@
     %figure.item
       - @mentors.first(4).each do |mentor|
         .mentor-wrapper
-          %h2 #{mentor.name}
+          <a data-remote="true" data-id="#{mentor.id}" href="#"><h2> #{mentor.name}</h2></a>
           %p.border-bottom Ranking: #{mentor.official_ranking}
           %p Cost per class: #{number_to_currency(mentor.price)}
           = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
     %figure.item
       - @mentors.first(8).last(4).each do |mentor|
-        .mentor-wrapper
-          %h2 #{mentor.name}
+        .mentor-wrapper{style: 'padding-bottom: 15px;'}
+          <a data-remote="true" data-id="#{mentor.id}"  href='#'><h2> #{mentor.name}</h2></a>
           %p.border-bottom Ranking: #{mentor.official_ranking}
           %p Cost per class: #{number_to_currency(mentor.price)}
           = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
     %figure.item
       - @mentors.last(4).each do |mentor|
-        .mentor-wrapper
-          %h2 #{mentor.name}
+        .mentor-wrapper{style: 'padding-bottom: 15px;'}
+          <a data-remote="true" data-id="#{mentor.id}" href="#"><h2> #{mentor.name}</h2></a>
           %p.border-bottom Ranking: #{mentor.official_ranking}
           %p Cost per class: #{number_to_currency(mentor.price)}
           = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
@@ -128,5 +128,4 @@
 
 
 %script{src: '/assets/dropdown.js'}
-
 %script{src: '/assets/set_board.js'}

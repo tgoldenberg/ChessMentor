@@ -1,0 +1,23 @@
+.mentor-show-wrapper
+  .top-wrapper
+    .photo-wrapper
+      .round-photo-wrapper
+        = image_tag @mentor.avatar.url(:thumb)
+    .greeting-wrapper
+      %h2 #{@mentor.name}
+      %p #{@mentor.city}
+    .mentor-info-wrapper
+      %th
+        %p USCF ranking: #{@mentor.official_ranking}
+      %th
+        %p User ranking: #{@mentor.user_ranking}
+      %th
+        %p City: #{@mentor.city}
+      %th
+        %p Country: #{@mentor.country}
+      %th
+        %p #{number_to_currency(@mentor.price)} / class
+
+  .button-wrapper
+    = link_to 'Message', '#', class: 'button'
+    = link_to 'Request Instruction', '#', class: 'button small-font'

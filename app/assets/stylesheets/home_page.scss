@@ -310,6 +310,7 @@
     width: 100%;
     background: white;
     height: 362px;
+    padding-bottom: 15px;
   }
   .mentor-wrapper {
     @include span-columns(3 of 12);
@@ -317,6 +318,7 @@
       width: 200px;
       margin-left: 66px;
       margin-top: -9px;
+
     }
     h2 {
       font-weight: 300;
@@ -361,6 +363,7 @@
   background: $footer-background;
   padding: ($base-spacing * 2) $gutter;
   width: 100%;
+  margin-top:15px;
 
   .footer-logo {
     margin-bottom: 2em;
