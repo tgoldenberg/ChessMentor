@@ -1,3 +1,45 @@
 // Place all the styles related to the Messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.messages-wrapper {
+  .message-header {
+    background: $dark-green;
+    span.glyphicon.glyphicon-minus {
+      float: right;
+      margin-right: 20px;
+      font-size: 2.8em;
+      color: white;
+      padding-left: 15px;
+      border-left: 1px solid white;
+    }
+    p {
+      color: white;
+      float: left;
+      margin-left: 20px;
+      font-size: 1.5em;
+      padding: 0;
+      margin-top: 5px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.message-form-wrapper {
+  .field {
+    #message_body {
+      margin:0;
+    }
+  }
+
+  .actions {
+    .large-button {
+      position: relative;
+      top:0;
+      left:0;
+      margin-top:0;
+      padding: 11.5px 230px;
+      background: $aqua-green;
+    }
+  }
+}

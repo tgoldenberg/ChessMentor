@@ -17,15 +17,21 @@
         %p Country: #{@mentor.country}
       %th
         %p #{number_to_currency(@mentor.price)} / class
-      %th
-        %p #{@conversation.id}
 
   - if @conversation.messages.count == 0
     .button-wrapper
-      = link_to 'Message', new_conversation_message_path(@conversation), remote: true, class: 'button', id: 'message-button'
+      = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
       = link_to 'Request Instruction', '#', class: 'button small-font'
   - else
     .button-wrapper
       = link_to 'Request Instruction', '#', class: 'button small-font'
+  .form-wrapper{style: 'margin-top: 130px;'}
 
-%script{src: '/assets/message_form.js'}
+:javascript
+  $(function() {
+    $('#message-button').click(function() {
+      $('.modal-inner').animate({'height': '+=250', 'max-height': '+=10%', 'padding':'-=1em;'});
+
+      $('.form-wrapper').html("#{escape_javascript(render 'form')} ");
+    });
+  });

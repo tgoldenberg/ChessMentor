@@ -1,0 +1,24 @@
+
+.messages-wrapper{style: 'height: 170px; background: #e6e6e6;'}
+  .message-header{style: 'height: 39px;'}
+    %p My Messages
+    %span.glyphicon.glyphicon-minus
+.message-form-wrapper
+  = simple_form_for [@conversation, @message], remote: true do |f|
+    - if @message.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
+        %ul
+          - @message.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.text_area :body
+    .field
+      = f.hidden_field :sender_id
+    .field
+      = f.hidden_field :recipient_id
+    .field
+      = f.hidden_field :conversation
+    .actions
+      = f.submit 'Send', class: 'large-button button'
