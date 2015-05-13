@@ -2,7 +2,8 @@
 .messages-wrapper{style: 'height: 170px; background: #e6e6e6;'}
   .message-header{style: 'height: 39px;'}
     %p My Messages
-    %span.glyphicon.glyphicon-minus
+    %span.glyphicon.glyphicon-minus.collapse-header
+  .message-inner-content-holder
 .message-form-wrapper
   = simple_form_for [@conversation, @message], remote: true do |f|
     - if @message.errors.any?
@@ -22,3 +23,26 @@
       = f.hidden_field :conversation
     .actions
       = f.submit 'Send', class: 'large-button button'
+
+:javascript
+  $(function() {
+    $('#message_sender_id').val(#{current_user.id});
+    $('#message_recipient_id').val(#{@mentor.id});
+
+
+    $('.collapse-header').click(function() {
+      if ( $('.collapse-header').hasClass('glyphicon-minus')) {
+        $('.message-inner-content-holder').hide();
+        $('.message-form-wrapper').hide();
+        $('.messages-wrapper').animate({'height':'-=130px'});
+        $('.collapse-header').addClass('glyphicon-plus').removeClass('glyphicon-minus');
+        $('.modal-inner').animate({'height': '-=220', 'max-height': '-=6%', 'padding':'+=1em;'});
+      } else {
+        $('.messages-wrapper').animate({'height':'+=130px'});
+        $('.message-inner-content-holder').show();
+        $('.message-form-wrapper').show();
+        $('.collapse-header').addClass('glyphicon-minus').removeClass('glyphicon-plus');
+        $('.modal-inner').animate({'height': '+=220', 'max-height': '+=6%', 'padding':'-=1em;'});
+      }
+    });
+  });

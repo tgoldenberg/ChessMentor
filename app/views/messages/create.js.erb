@@ -1,1 +1,3 @@
-console.log("THIS IS A NEW MESSAGE! YAY!!!");
+$('#message_body').val('');
+$('.message-inner-content-holder').append("<%= escape_javascript(render 'message') %>");
+$('.message-inner-content-holder').scrollTop($('.message-inner-content-holder').prop('scrollHeight') - 130);

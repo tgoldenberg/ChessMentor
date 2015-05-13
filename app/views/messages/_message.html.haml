@@ -1,0 +1,4 @@
+.message-inner-content
+  = image_tag @message.sender.avatar.url(:thumb), class: 'message-sender-profile'
+  %p.message-body #{@message.body}
+%p.creation-time #{time_ago_in_words(@message.created_at)} ago

@@ -2,15 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .messages-wrapper {
+  .message-inner-content-holder {
+    height: 130px;
+    background: #e6e6e6;
+    clear:both;
+    overflow-y: auto;
+  }
   .message-header {
     background: $dark-green;
-    span.glyphicon.glyphicon-minus {
+    span.glyphicon.glyphicon-minus, span.glyphicon.glyphicon-plus {
       float: right;
       margin-right: 20px;
-      font-size: 2.8em;
+      font-size: 2em;
       color: white;
       padding-left: 15px;
       border-left: 1px solid white;
+      margin-top: 4px;
+
     }
     p {
       color: white;
@@ -18,10 +26,81 @@
       margin-left: 20px;
       font-size: 1.5em;
       padding: 0;
-      margin-top: 5px;
+      margin-top: 12px;
       font-weight: 300;
       letter-spacing: 1px;
+      line-height: 0.7em;
     }
+  }
+  .message-inner-content {
+    position: relative;
+    display: flex;
+    clear:both;
+    overflow-y: auto;
+    .message-sender-profile {
+      clear: both;
+      margin-left: 20px;
+      position: relative;
+      z-index: 20;
+      height: 50px;
+      margin-top: 15px;
+    }
+    p.message-body {
+      margin-top: 15px;
+      padding-left: 20px;
+      background: white;
+      position: relative;
+      border-radius: 3px;
+      padding-right: 36px;
+      float: left;
+      margin-right: 20px;
+      padding-top: 20px;
+      padding-bottom: 30px;
+      border-radius: 3px;
+      padding-right: 36px;
+      margin-right: 20px;
+      margin-left: 10px;
+      margin-top: 9px;
+    }
+
+    p.message-body:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid white;
+    }
+    .message-body:before {
+    	content: ' ';
+    	position: absolute;
+    	width: 0;
+    	height: 0;
+      left: -20px;
+    	right: auto;
+      top: 30px;
+    	bottom: auto;
+    	border: 20px solid;
+    	border-color: white white transparent transparent;
+    }
+    .message-body:after{
+    	content: ' ';
+    	position: absolute;
+    	width: 0;
+    	height: 0;
+      left: -13px;
+    	right: auto;
+      top: 13px;
+    	bottom: auto;
+    	border: 12px solid;
+    	border-color: white white transparent transparent;
+    }
+
+  }
+  p.creation-time {
+    margin-left: 20px;
+    margin-top: 0px;
+    color: #777;
   }
 }
 
@@ -39,6 +118,9 @@
       left:0;
       margin-top:0;
       padding: 11.5px 230px;
+      background: $dark-green;
+    }
+    .large-button:hover, .large-button:active, .large-button:focus, .large-button:visited {
       background: $aqua-green;
     }
   }
