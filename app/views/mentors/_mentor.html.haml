@@ -1,4 +1,4 @@
-.mentor-show-wrapper
+.mentor-show-wrapper{data:{id: '#{current_user.id}'}}
   .top-wrapper
     .photo-wrapper
       .round-photo-wrapper
@@ -17,7 +17,15 @@
         %p Country: #{@mentor.country}
       %th
         %p #{number_to_currency(@mentor.price)} / class
+      %th
+        %p #{@conversation.id}
 
-  .button-wrapper
-    = link_to 'Message', '#', class: 'button'
-    = link_to 'Request Instruction', '#', class: 'button small-font'
+  - if @conversation.messages.count == 0
+    .button-wrapper
+      = link_to 'Message', new_conversation_message_path(@conversation), remote: true, class: 'button', id: 'message-button'
+      = link_to 'Request Instruction', '#', class: 'button small-font'
+  - else
+    .button-wrapper
+      = link_to 'Request Instruction', '#', class: 'button small-font'
+
+%script{src: '/assets/message_form.js'}

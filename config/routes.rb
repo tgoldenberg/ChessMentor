@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :messages
-  resources :conversations
+
+  resources :conversations do
+    resources :messages
+  end
+
   root 'pages#home'
 
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions', omniauth_callbacks: 'omniauth_callbacks'}
@@ -11,6 +14,8 @@ Rails.application.routes.draw do
   get 'mentors/lowest_price'
   get 'mentors/best_user_ranking'
   get 'mentors/show'
+  post '/pusher/auth' => 'pusher#auth'
+  get 'remote/show'
 
   resources :mentors do
     collection do

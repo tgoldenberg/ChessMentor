@@ -25,6 +25,16 @@ before_action :authenticate_user!
 
   def show
     @mentor = Mentor.find(params[:id])
+    @previous_conversation = Conversation.where(sender_id: current_user.id, recipient_id: @mentor.id)
+    @previous_received = Conversation.where(recipient_id: current_user.id, sender_id: @mentor.id)
+    if @previous_conversation.count > 0
+      @conversation = @previous_conversation.last
+    elsif @previous_received.count > 0
+      @conversation = @previous_revieved.last
+    else
+      @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @mentor.id)
+    end
+    @message = @conversation.messages.build 
   end
 
 end

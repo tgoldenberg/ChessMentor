@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     @mentors = Mentor.all
     @user = User.new
     @users = User.all
+    @conversation = Conversation.new
   end
 
   def search

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  respond_to :html, :js
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
