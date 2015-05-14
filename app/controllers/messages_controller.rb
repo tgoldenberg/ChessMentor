@@ -10,13 +10,13 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.build message_params
+    @message.avatar_url = current_user.avatar.url
     @message.save
-    
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:body, :sender_id, :recipient_id, :conversation_id)
+    params.require(:message).permit(:body, :sender_id, :recipient_id, :conversation_id, :avatar_url, :created_time)
   end
 end
