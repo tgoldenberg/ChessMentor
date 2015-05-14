@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get 'mentors/best_user_ranking'
   get 'mentors/show'
   post '/pusher/auth' => 'pusher#auth'
-  get 'remote/show'
 
   resources :mentors do
     collection do

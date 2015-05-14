@@ -17,7 +17,7 @@
         %p Country: #{@mentor.country}
       %th
         %p #{number_to_currency(@mentor.price)} / class
-  - if !@conversation.messages.any?
+  - if @conversation.messages.count <= 1
     .button-wrapper
       = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
       = link_to 'Request Instruction', '#', class: 'button small-font'
@@ -33,7 +33,7 @@
 :javascript
   $(function() {
     $('#message-button').click(function() {
-      $('.modal-inner').animate({'height': '+=250', 'max-height': '+=10%', 'padding':'-=1em;'});
+      // $('.modal-inner').animate({'height': '+=250', 'max-height': '+=10%', 'padding':'-=1em;'});
 
       $('.form-wrapper').html("#{escape_javascript(render 'form')} ");
     });

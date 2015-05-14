@@ -191,8 +191,8 @@ label img {
   width: 95%;
 
   @include media($medium-screen) {
-    max-height: 90%;
-    padding: 2em;
+    max-height: 95%;
+    padding: 1em;
     width: 60%;
   }
 

@@ -34,7 +34,9 @@ before_action :authenticate_user!
     else
       @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @mentor.id)
     end
-    @message = @conversation.messages.build 
+    @message = @conversation.messages.build
+    @messages = @conversation.messages
+
   end
 
 end

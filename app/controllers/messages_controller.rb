@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.build message_params
     @message.save
-
+    
   end
 
   private

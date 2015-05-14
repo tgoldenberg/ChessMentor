@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   has_many :conversations, foreign_key: 'sender_id'
   has_many :received_conversations, class_name: 'Conversation', foreign_key: 'recipient_id'
 
-  has_many :received_messages, class: 'Message', foreign_key: 'recipient_id'
-  has_many :sent_messages, class: 'Message', foreign_key: 'sender_id'
+  has_many :received_messages, class_name: 'Message', foreign_key: 'recipient_id'
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

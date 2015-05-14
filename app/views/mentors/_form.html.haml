@@ -36,13 +36,13 @@
         $('.message-form-wrapper').hide();
         $('.messages-wrapper').animate({'height':'-=130px'});
         $('.collapse-header').addClass('glyphicon-plus').removeClass('glyphicon-minus');
-        $('.modal-inner').animate({'height': '-=220', 'max-height': '-=6%', 'padding':'+=1em;'});
+        $('.modal-inner').animate({'max-height': '-=10%', 'padding':'+=1em;'});
       } else {
         $('.messages-wrapper').animate({'height':'+=130px'});
         $('.message-inner-content-holder').show();
         $('.message-form-wrapper').show();
         $('.collapse-header').addClass('glyphicon-minus').removeClass('glyphicon-plus');
-        $('.modal-inner').animate({'height': '+=220', 'max-height': '+=6%', 'padding':'-=1em;'});
+        $('.modal-inner').animate({'max-height': '+=10%', 'padding':'-=1em;'});
       }
     });
   });
