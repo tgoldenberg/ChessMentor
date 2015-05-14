@@ -25,7 +25,6 @@ header.navigation {
    min-height: $navigation-height;
    width: 100%;
    height: 60px;
-   overflow: hidden;
    z-index: 999;
 
    .navigation-wrapper {
@@ -98,6 +97,21 @@ header.navigation {
      text-align: right;
      width: 100%;
      z-index: 9999;
+
+     .glyphicon-envelope, .glyphicon-globe {
+       font-size: 2em;
+       margin: auto;
+       vertical-align: middle;
+       color: #999;
+     }
+
+     .glyphicon-globe {
+       margin-right: -50px;
+     }
+
+     .glyphicon-envelope {
+       margin-right: 20px;
+     }
 
      @include media ($horizontal-bar-mode) {
        background: transparent;

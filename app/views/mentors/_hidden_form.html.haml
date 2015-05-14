@@ -1,11 +1,12 @@
-.messages-wrapper{style: 'height: 40px; background: #e6e6e6;'}
+.messages-wrapper{style: 'height: 170px; background: #e6e6e6;'}
   .message-header{style: 'height: 39px;'}
     %p My Messages
-    %span.glyphicon.glyphicon-plus.collapse-header
-  .message-inner-content-holder{style: 'display: none;'}
+    %span.glyphicon.glyphicon-minus.collapse-header
+  .message-inner-content-holder
+    = render 'mentors/messages'
 
 
-.message-form-wrapper{style: 'display: none;'}
+.message-form-wrapper
   = simple_form_for [@conversation, @message], remote: true do |f|
     - if @message.errors.any?
       #error_explanation
@@ -29,6 +30,7 @@
   $(function() {
     $('#message_sender_id').val(#{current_user.id});
     $('#message_recipient_id').val(#{@mentor.id});
+    $('.message-inner-content-holder').scrollTop($('.message-inner-content-holder').prop('scrollHeight') - 130);
 
 
     $('.collapse-header').click(function() {
@@ -38,14 +40,12 @@
         $('.message-form-wrapper').hide();
         $('.messages-wrapper').animate({'height':'-=130px'});
         $('.collapse-header').addClass('glyphicon-plus').removeClass('glyphicon-minus');
-        // $('.modal-inner').animate({'height': '-=220', 'max-height': '-=6%', 'padding':'+=1em;'});
       } else {
         $('.message-inner-content-holder').html("#{escape_javascript(render 'messages')}");
         $('.messages-wrapper').animate({'height':'+=130px'});
         $('.message-inner-content-holder').show();
         $('.message-form-wrapper').show();
         $('.collapse-header').addClass('glyphicon-minus').removeClass('glyphicon-plus');
-        // $('.modal-inner').animate({'height': '+=220', 'max-height': '+=6%', 'padding':'-=1em;'});
       }
     });
   });

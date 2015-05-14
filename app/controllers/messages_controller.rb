@@ -12,6 +12,9 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build message_params
     @message.avatar_url = current_user.avatar.url
     @message.save
+    num = @message.recipient_id.to_s
+    channel = 'private-conversation.' + num
+    Pusher.trigger(channel, 'new_message', {:from => current_user.name, :message => @message.body, :conversation_id => @message.conversation_id, :create_time => @message.created_at})
   end
 
   private

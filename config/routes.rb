@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'mentors/lowest_price'
   get 'mentors/best_user_ranking'
   get 'mentors/show'
+  get 'users/show'
   post '/pusher/auth' => 'pusher#auth'
 
   resources :mentors do

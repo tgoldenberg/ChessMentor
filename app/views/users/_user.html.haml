@@ -2,21 +2,21 @@
   .top-wrapper
     .photo-wrapper
       .round-photo-wrapper
-        = image_tag @mentor.avatar.url(:thumb)
+        = image_tag @user.avatar.url(:thumb)
     .greeting-wrapper
-      %h2 #{@mentor.name}
-      %p #{@mentor.city}
+      %h2 #{@user.name}
+      %p #{@user.city}
     .mentor-info-wrapper
       %th
-        %p USCF ranking: #{@mentor.official_ranking}
+        %p USCF ranking: #{@user.official_ranking}
       %th
-        %p User ranking: #{@mentor.user_ranking}
+        %p User ranking: #{@user.user_ranking}
       %th
-        %p City: #{@mentor.city}
+        %p City: #{@user.city}
       %th
-        %p Country: #{@mentor.country}
+        %p Country: #{@user.country}
       %th
-        %p #{number_to_currency(@mentor.price)} / class
+        %p #{number_to_currency(@user.price)} / class
   - if @conversation.messages.count <= 1
     .button-wrapper
       = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'

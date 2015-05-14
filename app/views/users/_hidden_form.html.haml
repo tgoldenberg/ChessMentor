@@ -1,10 +1,11 @@
-
-.messages-wrapper{style: 'height: 170px; background: #e6e6e6;'}
+.messages-wrapper{style: 'height: 40px; background: #e6e6e6;'}
   .message-header{style: 'height: 39px;'}
     %p My Messages
-    %span.glyphicon.glyphicon-minus.collapse-header
-  .message-inner-content-holder
-.message-form-wrapper
+    %span.glyphicon.glyphicon-plus.collapse-header
+  .message-inner-content-holder{style: 'display: none;'}
+
+
+.message-form-wrapper{style: 'display: none;'}
   = simple_form_for [@conversation, @message], remote: true do |f|
     - if @message.errors.any?
       #error_explanation
@@ -32,11 +33,13 @@
 
     $('.collapse-header').click(function() {
       if ( $('.collapse-header').hasClass('glyphicon-minus')) {
+        $('.message-inner-content-holder').html('');  // clear chat box
         $('.message-inner-content-holder').hide();
         $('.message-form-wrapper').hide();
         $('.messages-wrapper').animate({'height':'-=130px'});
         $('.collapse-header').addClass('glyphicon-plus').removeClass('glyphicon-minus');
       } else {
+        $('.message-inner-content-holder').html("#{escape_javascript(render 'messages')}");
         $('.messages-wrapper').animate({'height':'+=130px'});
         $('.message-inner-content-holder').show();
         $('.message-form-wrapper').show();

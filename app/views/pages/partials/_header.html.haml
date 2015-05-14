@@ -8,7 +8,27 @@
 
     .navigation-tools
       %ul.navigation-menu.show{id: 'js-navigation-menu'}
+        %li.nav-link.dropdown
+          %span.glyphicon.glyphicon-envelope
+            - if @messages.any?
+              %ul.dropdown-menu.dropdown-select.received-messages
+                - @messages.each do |msg|
+                  %li
+                    <a data-remote="true" href='/mentors/#{msg.sender.id}' class="user-link" style="font-size:14px; text-align:center;">New Message from #{msg.sender.name}</a>
+
+        %li.nav-link
+          %span.glyphicon.glyphicon-globe
+            = link_to '', '#'
         %li.nav-link
           = link_to 'Account', edit_user_registration_path
         %li.nav-link
           = link_to 'Sign out', destroy_user_session_path, method: :delete
+
+:javascript
+  $(".glyphicon-envelope").click(function() {
+    $(".received-messages").toggleClass("show-menu");
+    $(".user-link").click(function(){
+      $(".received-messages").removeClass("show-menu");
+    });
+  });
+  
