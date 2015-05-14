@@ -1,0 +1,115 @@
+= simple_form_for @request do |f|
+  - if @request.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
+      %ul
+        - @request.errors.full_messages.each do |msg|
+          %li= msg
+
+  %h2 Times I am available
+  %table.request-table.tables
+    %thead
+      %tr
+        %th
+        %th Sunday
+        %th Monday
+        %th Tuesday
+        %th Wednesday
+        %th Thursday
+        %th Friday
+        %th Saturday
+    %tbody
+      %tr.morning
+        %td Morning
+        %td.click-date.grey-highlight.sunday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.monday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.tuesday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.wednesday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.thursday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.friday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.saturday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+      %tr.afternoon
+        %td Afternoon
+        %td.click-date.grey-highlight.sunday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.monday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.tuesday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.wednesday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.thursday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.friday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.saturday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+      %tr.evening
+        %td Evening
+        %td.click-date.grey-highlight.sunday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.monday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.tuesday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.wednesday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.thursday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.friday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+        %td.click-date.grey-highlight.saturday
+          %span.glyphicon.glyphicon-ok-circle.bounceIn.animated{style: 'display:none'}
+
+  %br/
+
+  .field
+    = f.label 'Message for mentor'
+    = f.text_area :body
+  .field
+    = f.hidden_field :sender_id, value: current_user.id
+  .field
+    = f.hidden_field :recipient_id, value: params[:recipient_id]
+
+  .field
+    %p To process your request we need to save your payment information. Click below to save your information with our secure payment gateway, Stripe
+
+  = link_to "Connect to Stripe", '#', class: 'button button-stripe'
+
+  .field
+    = f.hidden_field :stripe
+  .field
+    = f.hidden_field :time, id: 'time-field'
+
+  .actions
+    = f.submit 'Save', class: 'button'
+
+  :javascript
+      $(function() {
+        $('.click-date').click(function() {
+          var dateTime = " " + $(this).attr('class').match(/sunday|monday|tuesday|wednesday|thursday|friday|saturday/).toString();
+          dateTime += " " + $(this).parent('tr').attr('class').match(/morning|afternoon|evening/).toString() + " -";
+          var timeField = $('#time-field').val();
+          console.log(dateTime);
+          if ($(this).hasClass('grey-highlight')) {
+            $('#time-field').val(timeField + dateTime);
+            console.log($('#time-field').val());
+          } else if ($(this).hasClass('green-highlight')) {
+            console.log(dateTime);
+            timeField = timeField.replace(dateTime, "");
+            $('#time-field').val(timeField);
+            console.log($('#time-field').val());
+          }
+          $(this).toggleClass('grey-highlight');
+          $(this).toggleClass('green-highlight');
+          $(this).find('.glyphicon-ok-circle').toggle();
+
+        });
+      });

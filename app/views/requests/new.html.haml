@@ -1,0 +1,13 @@
+
+.request-form-holder
+  .mentor-show-wrapper{data:{id: '#{current_user.id}'}}
+    .top-wrapper
+      .photo-wrapper
+        .round-photo-wrapper
+          = image_tag @request.recipient.avatar.url(:thumb)
+      .greeting-wrapper
+        %h2 Instruction Request with #{@request.recipient.name}
+
+  = render 'form'
+
+  = link_to 'Back', requests_path, class: 'back-button'

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Body:
+  = @request.body
+%p
+  %b Sender:
+  = @request.sender_id
+%p
+  %b Recipient:
+  = @request.recipient_id
+%p
+  %b Seen:
+  = @request.seen
+
+= link_to 'Edit', edit_request_path(@request)
+\|
+= link_to 'Back', requests_path

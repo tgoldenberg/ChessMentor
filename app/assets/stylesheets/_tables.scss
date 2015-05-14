@@ -29,12 +29,12 @@
   tbody {
     background-color: $table-background;
 
-    tr:hover > td, tr:hover > th {
+    tr:hover > td.grey-highlight, tr:hover > th {
       background-color: $table-hover-background;
     }
     tr:nth-child(even) {
       background-color: $table-stripe-background;
-      &:hover > td {
+      &:hover > td.grey-highlight {
         background-color: $table-stripe-background-hover;
       }
     }

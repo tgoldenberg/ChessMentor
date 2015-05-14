@@ -342,6 +342,7 @@ DEPENDENCIES
   open_uri_redirections
   paperclip (~> 4.1)
   papercrop
+  pry
   pusher
   rails (= 4.2.1)
   rspec
