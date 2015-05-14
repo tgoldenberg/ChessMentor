@@ -17,12 +17,18 @@
         %p Country: #{@mentor.country}
       %th
         %p #{number_to_currency(@mentor.price)} / class
+  - if !@conversation.messages.any?
+    .button-wrapper
+      = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
+      = link_to 'Request Instruction', '#', class: 'button small-font'
 
-  .button-wrapper
-    = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
-    = link_to 'Request Instruction', '#', class: 'button small-font'
+    .form-wrapper{style: 'margin-top: 130px;'}
+  - else
+    .button-wrapper
+      = link_to 'Request Instruction', '#', class: 'button small-font', style: 'font-size: 1.2em; padding: 19px 15px; left: 101px; top: 188px; position: absolute; letter-spacing: 1.2px;'
 
-  .form-wrapper{style: 'margin-top: 130px;'}
+    .form-wrapper{style: 'margin-top: 150px;'}
+      = render 'hidden_form'
 
 :javascript
   $(function() {
@@ -31,6 +37,4 @@
 
       $('.form-wrapper').html("#{escape_javascript(render 'form')} ");
     });
-
-  
   });

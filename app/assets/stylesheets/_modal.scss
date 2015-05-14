@@ -186,7 +186,7 @@ label img {
   max-height: 95%;
   overflow: auto;
   overflow-x: hidden;
-  padding: $modal-padding / 2;
+  padding: 1em;
   position: relative;
   width: 95%;
 
@@ -218,7 +218,7 @@ label img {
 
   .modal-content {
     color: $base-font-color;
-    padding: 20px;
+    padding: 0px;
   }
 }
 
