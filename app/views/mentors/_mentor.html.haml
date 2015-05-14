@@ -17,7 +17,7 @@
         %p Country: #{@mentor.country}
       %th
         %p #{number_to_currency(@mentor.price)} / class
-  - if @conversation.messages.count <= 1
+  - if @conversation.messages.count < 1
     .button-wrapper
       = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
       = link_to 'Request Instruction', new_request_path(recipient_id: @mentor.id), class: 'button small-font'

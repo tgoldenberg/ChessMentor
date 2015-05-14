@@ -71,19 +71,23 @@
   %br/
 
   .field
-    = f.label 'Message for mentor'
+    = f.label 'Message for mentor*(optional)'
     = f.text_area :body
   .field
     = f.hidden_field :sender_id, value: current_user.id
   .field
     = f.hidden_field :recipient_id, value: params[:recipient_id]
 
-  .field
-    %p To process your request we need to save your payment information. Click below to save your information with our secure payment gateway, Stripe
+  .field{style: 'text-align: center;'}
+    %p
+      To process your request we need to save your <em>payment information</em>. Click below to save your information with our secure payment gateway, <b>Stripe</b>.
+    %p
+      You will not be charged until after the instruction, and can cancel at <b>any</b> time.
 
-  = link_to "Connect to Stripe", '#', class: 'button button-stripe'
+    = link_to "Connect to Stripe", '#', class: 'button button-stripe'
+    %span.glyphicon.glyphicon-check.red Pending
 
-  .field
+  .field{style: 'text-align: center; width: 100%;'}
     = f.hidden_field :stripe
   .field
     = f.hidden_field :time, id: 'time-field'

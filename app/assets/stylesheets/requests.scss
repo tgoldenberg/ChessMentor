@@ -4,9 +4,11 @@
 .request-form-holder {
   padding-left: 80px;
   padding-right: 80px;
+
   .mentor-show-wrapper {
     width: 500px;
     @include outer-container;
+
     .top-wrapper {
       @include row(table);
       height: 125px;
@@ -14,8 +16,6 @@
       position: relative;
       display: flex;
       padding-top: 15px;
-
-
 
         .photo-wrapper {
           float: left;
@@ -50,7 +50,6 @@
           border-top-right-radius: 3px;
           border-bottom-right-radius: 7px;
 
-
           h2 {
             margin-top: 5px;
             color: white;
@@ -59,21 +58,29 @@
 
           p {
             color: white;
-
           }
-
         }
       }
     }
+
   h1, p, h2, label {
     color: #333;
+    font-weight: 400;
+  }
+  .button-stripe.button {
     font-weight: 400;
   }
   .button {
     @include button(shiny, $action-color);
   }
+  .submit-button {
+    visibility: hidden;
+  }
   .button-stripe {
     @include button(shiny, $action-color);
+  }
+  .red {
+    color: red;
   }
   .green-highlight, .green-highlight:hover {
     background-color: $aqua-green;
@@ -107,8 +114,9 @@
   }
 }
 .back-button {
-  @include button(shiny, #e6e6e6);
-  margin-top: 4px;
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 // animate.css for ok-circle glyphicon
