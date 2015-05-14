@@ -34,9 +34,13 @@ before_action :authenticate_user!
     else
       @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @mentor.id)
     end
+    @conversation.messages.where(:recipient_id => current_user.id).each do |msg|
+      msg.read = true
+      msg.save
+    end
     @message = @conversation.messages.build
-    @messages = []
-    @conversation.messages.each {|msg| @messages << msg unless msg.body == ""}
+    # @messages = []
+    # @conversation.messages.each {|msg| @messages << msg unless msg.body == ""}
   end
 
 end

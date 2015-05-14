@@ -18,30 +18,27 @@
     .field
       = f.text_area :body
     .field
-      = f.hidden_field :sender_id
+      = f.hidden_field :sender_id, :value => current_user.id
     .field
-      = f.hidden_field :recipient_id
-    .field
-      = f.hidden_field :conversation
+      = f.hidden_field :recipient_id, :value => @mentor.id
     .actions
       = f.submit 'Send', class: 'large-button button'
 
 :javascript
   $(function() {
-    $('#message_sender_id').val(#{current_user.id});
-    $('#message_recipient_id').val(#{@mentor.id});
+    // $('#message_sender_id').val(#{current_user.id});
+    // $('#message_recipient_id').val(#{@mentor.id});
     $('.message-inner-content-holder').scrollTop($('.message-inner-content-holder').prop('scrollHeight') - 130);
 
 
     $('.collapse-header').click(function() {
       if ( $('.collapse-header').hasClass('glyphicon-minus')) {
-        $('.message-inner-content-holder').html('');  // clear chat box
         $('.message-inner-content-holder').hide();
         $('.message-form-wrapper').hide();
         $('.messages-wrapper').animate({'height':'-=130px'});
         $('.collapse-header').addClass('glyphicon-plus').removeClass('glyphicon-minus');
       } else {
-        $('.message-inner-content-holder').html("#{escape_javascript(render 'messages')}");
+        // $('.message-inner-content-holder').html("#{escape_javascript(render 'messages')}");
         $('.messages-wrapper').animate({'height':'+=130px'});
         $('.message-inner-content-holder').show();
         $('.message-form-wrapper').show();

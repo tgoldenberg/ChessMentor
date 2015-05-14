@@ -1,7 +1,7 @@
-- if @messages.any?
-  - @messages.compact.each do |msg|
+- if @conversation.messages.any?
+  - @conversation.messages.last(2).each do |msg|
     - if msg.body
       .message-inner-content
-        = image_tag msg.avatar_url, class: 'message-sender-profile', style: 'width: 50px;'
+        = image_tag msg.sender.avatar.url(:thumb), class: 'message-sender-profile', style: 'width: 50px;'
         %p.message-body #{msg.body}
       %p.creation-time #{time_ago_in_words(msg.created_at)} ago

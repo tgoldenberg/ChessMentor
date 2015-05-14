@@ -3,11 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title ChessmeetV1
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag    'application', media: 'all', "data-turbolinks-track" => true
+    = javascript_include_tag 'application', "data-turbolinks-track" => true
     = csrf_meta_tags
+    <link href="https://fontastic.s3.amazonaws.com/GG6HyuJabsECY7He8jxRUg/icons.css" rel="stylesheet">
 
   %body{style: 'background: #f9f9f9;'}
-    -# %script{src:"//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"}
     %script{src:"//js.pusher.com/2.2/pusher.min.js"}
     = yield
