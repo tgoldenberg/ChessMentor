@@ -1,3 +1,33 @@
+.field{style: 'text-align: center;'}
+  - if @charge
+    %p
+      To process your request we need to save your <em>payment information</em>. Click below to save your information with our secure payment gateway, <b>Stripe</b>.
+    %p
+      You will not be charged until after the instruction, and can cancel at <b>any</b> time.
+
+
+    = form_for @charge, html: { id: "reportform"}, remote: true, update: { success: 'response', failure: 'error'} do |f|
+      = f.hidden_field :price, value: @request.recipient.price
+      = f.hidden_field :description, value: @request.recipient.name
+      = f.hidden_field :owner_id, value: @request.recipient.id
+      = f.hidden_field :vendor_id, value: params[:recipient_id]
+      = f.submit 'Send', id: 'charge-submit', style: 'display: none;'
+
+      %script{src:"https://checkout.stripe.com/checkout.js", class:"stripe-button", data: {key: ENV["stripe_publishable_key"], price:"#{@request.recipient.price*100}", name:"ChessMentor", vendor_id: "#{@request.recipient.id}", description: "#{number_to_currency(@request.recipient.price)}", image: "/assets/landing_background.png"}}
+      :javascript
+        $('#reportform').on('ajax:success', function(e, data, status, xhr) {
+          $('.red').text('OK!');
+        }).on('ajax:error', function(e, xhr, status, error) {
+          $('.red').text('Failed!');
+        });
+
+    %span.glyphicon.glyphicon-check.red Pending
+
+  - else
+    %br/
+    %p Your payment information was saved successfully. Fill out the form below and submit a request!
+    %span.glyphicon.glyphicon-check.green{style: 'color:green; font-size: 1.5em;'} OK!
+
 = simple_form_for @request do |f|
   - if @request.errors.any?
     #error_explanation
@@ -78,25 +108,20 @@
   .field
     = f.hidden_field :recipient_id, value: params[:recipient_id]
 
-  .field{style: 'text-align: center;'}
-    %p
-      To process your request we need to save your <em>payment information</em>. Click below to save your information with our secure payment gateway, <b>Stripe</b>.
-    %p
-      You will not be charged until after the instruction, and can cancel at <b>any</b> time.
-
-    = link_to "Connect to Stripe", '#', class: 'button button-stripe'
-    %span.glyphicon.glyphicon-check.red Pending
 
   .field{style: 'text-align: center; width: 100%;'}
     = f.hidden_field :stripe
   .field
     = f.hidden_field :time, id: 'time-field'
-
   .actions
     = f.submit 'Save', class: 'button'
 
+
+
   :javascript
       $(function() {
+
+
         $('.click-date').click(function() {
           var dateTime = " " + $(this).attr('class').match(/sunday|monday|tuesday|wednesday|thursday|friday|saturday/).toString();
           dateTime += " " + $(this).parent('tr').attr('class').match(/morning|afternoon|evening/).toString() + " -";

@@ -10,6 +10,6 @@
 
   %body{style: 'background: #f9f9f9;'}
     %script{src:"//js.pusher.com/2.2/pusher.min.js"}
-    
     = render 'layouts/header'
+    %p.notice #{notice}
     = yield
