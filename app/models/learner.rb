@@ -1,2 +1,0 @@
-class Learner < User
-end

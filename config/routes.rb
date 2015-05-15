@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :requests
+
+  resources :requests do
+    resources :charges
+  end
   resources :conversations do
     resources :messages
   end

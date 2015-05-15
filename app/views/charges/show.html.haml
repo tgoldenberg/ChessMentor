@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @charge.description
+%p
+  %b User:
+  = @charge.user_id
+%p
+  %b Vendor:
+  = @charge.vendor_id
+%p
+  %b Token:
+  = @charge.token
+%p
+  %b Customer:
+  = @charge.customer_id
+%p
+  %b Completed:
+  = @charge.completed
+%p
+  %b Price:
+  = @charge.price
+
+= link_to 'Edit', edit_charge_path(@charge)
+\|
+= link_to 'Back', charges_path

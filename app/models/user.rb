@@ -5,20 +5,23 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :stripe_connect]
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   crop_attached_file :avatar
 
-  has_many :conversations, foreign_key: 'sender_id'
+  has_many :conversations, foreign_key: 'sender_id', dependent: :destroy
   has_many :received_conversations, class_name: 'Conversation', foreign_key: 'recipient_id'
 
   has_many :received_messages, class_name: 'Message', foreign_key: 'recipient_id'
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
 
-  has_many :received_requests, class_name: 'Request', foreign_key: 'recipient_id'
-  has_many :sent_request, class_name: 'Request', foreign_key: 'sender_id'
+  has_many :received_requests, class_name: 'Request', foreign_key: 'recipient_id', dependent: :destroy
+  has_many :sent_request, class_name: 'Request', foreign_key: 'sender_id', dependent: :destroy
+
+  has_many :paid_charges, class_name: 'Charge', foreign_key: 'user_id', dependent: :destroy
+  has_many :received_charges, class_name: 'Charge', foreign_key: 'vendor_id', dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

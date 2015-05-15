@@ -1,0 +1,14 @@
+= simple_form_for(@charge) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :description
+    = f.input :user_id
+    = f.input :vendor_id
+    = f.input :token
+    = f.input :customer_id
+    = f.input :completed
+    = f.input :price
+
+  .form-actions
+    = f.button :submit

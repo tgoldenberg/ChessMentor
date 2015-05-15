@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514202650) do
+ActiveRecord::Schema.define(version: 20150515021026) do
+
+  create_table "charges", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "vendor_id"
+    t.string   "token"
+    t.string   "customer_id"
+    t.boolean  "completed",   default: false
+    t.integer  "price"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "request_id"
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -78,6 +91,9 @@ ActiveRecord::Schema.define(version: 20150514202650) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "type"
+    t.string   "publishable_key"
+    t.string   "access_code"
+    t.string   "stripe_user_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  user_id: 1
+  vendor_id: 1
+  token: MyString
+  customer_id: MyString
+  completed: false
+  price: 1
+
+two:
+  description: MyString
+  user_id: 1
+  vendor_id: 1
+  token: MyString
+  customer_id: MyString
+  completed: false
+  price: 1

@@ -24,6 +24,8 @@ gem 'less-rails'
 gem 'therubyracer'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'jquery-rails'
+gem 'stripe'
+gem 'omniauth-stripe-connect'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 

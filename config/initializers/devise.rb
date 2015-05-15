@@ -232,7 +232,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, "370236446503733", "bd42ae34adfaf4365a591a9d523170e3", :image_size => 'large'
+  config.omniauth :facebook, ENV["facebook_key"], ENV["facebook_secret"], :image_size => 'large'
+  config.omniauth :stripe_connect, ENV["access_token"], ENV["stripe_api_key"], scope: 'read_write', stripe_landing: 'register'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
