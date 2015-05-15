@@ -33,6 +33,7 @@ class RequestsController < ApplicationController
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
+    @request.send_notifications!
   end
 
   def destroy
