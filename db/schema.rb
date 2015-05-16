@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515021026) do
+ActiveRecord::Schema.define(version: 20150515065836) do
+
+  create_table "boards", force: :cascade do |t|
+    t.string   "fen"
+    t.integer  "move_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "boards", ["move_id"], name: "index_boards_on_move_id"
 
   create_table "charges", force: :cascade do |t|
     t.string   "description"
@@ -27,6 +36,23 @@ ActiveRecord::Schema.define(version: 20150515021026) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "player1_id"
+    t.integer  "player2_id"
+    t.integer  "invitation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "games", ["invitation_id"], name: "index_games_on_invitation_id"
+
+  create_table "invitations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.datetime "created_at",   null: false
@@ -51,6 +77,17 @@ ActiveRecord::Schema.define(version: 20150515021026) do
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
+
+  create_table "moves", force: :cascade do |t|
+    t.string   "notation"
+    t.string   "piece"
+    t.integer  "room_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "moves", ["room_id"], name: "index_moves_on_room_id"
 
   create_table "requests", force: :cascade do |t|
     t.text     "body"

@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  respond_to :html, :js
+  
   def create
    customer = Stripe::Customer.create(
      :email => 'example@stripe.com',
@@ -13,6 +15,5 @@ class ChargesController < ApplicationController
    customer_id: customer.id
    )
    @charge.save
-   redirect_to :back
  end
 end

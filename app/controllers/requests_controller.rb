@@ -11,11 +11,7 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @request.recipient_id = params[:recipient_id]
-    @previous_charge = Charge.where(user_id: current_user.id, vendor_id: params[:recipient_id], completed: false)
-    if @previous_charge.count < 1
-      @charge = Charge.new
-      @charge.vendor_id = params[:recipient_id]
-    end
+    @charge = Charge.new
   end
 
   def edit
