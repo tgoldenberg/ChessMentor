@@ -1,7 +1,7 @@
+
 window.App.controllers.pages.home = function() {
 
   var setBoard = function() {
-    console.log("HELLO");
     if ($('#board').length && $('#board2').length && $('#board3').length) {
       var cfg = {
         pieceTheme: '/assets/{piece}.png',

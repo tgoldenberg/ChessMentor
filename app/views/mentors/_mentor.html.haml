@@ -33,7 +33,7 @@
   - else
     .button-wrapper
       = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
-      = link_to 'Create Game', new_invitation_path(sender_id: current_user.id, recipient_id: @mentor.id), data: {remote: true, type: 'script'}, class: 'button small-font'
+      = link_to 'Create Game', new_invitation_path(sender_id: current_user.id, recipient_id: @mentor.id), remote: true, class: 'button small-font invitation-button'
 
     .form-wrapper{style: 'margin-top: 130px;'}
 
@@ -42,7 +42,15 @@
     $('#message-button').click(function() {
       $('.form-wrapper').html("#{escape_javascript(render 'form')} ");
     });
-    $("a[data-remote]").on("ajax:success", function(e, data, status, xhr) {
-      console.log("Invitation sent");
+    $('.invitation-button').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '/invitations',
+        type: 'POST',
+        data: {sender_id: #{current_user.id}, recipient_id: #{@mentor.id}},
+        success: function(data) {
+          console.log("Invitation request");
+        }
+      });
     });
   });

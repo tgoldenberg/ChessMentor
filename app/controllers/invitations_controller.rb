@@ -5,7 +5,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.find(params[:id])
   end
 
-  def new
+  def create
     @invitation = Invitation.new
     @invitation.sender_id = params[:sender_id]
     @invitation.recipient_id = params[:recipient_id]
@@ -13,7 +13,7 @@ class InvitationsController < ApplicationController
     # redirect_to root_url, notice: 'Invitation sent to ' + @invitation.recipient.name + '.'
     id = @invitation.recipient_id.to_s
     channel = "private-conversation." + id #private channel for recipient via Pusher
-    Pusher.trigger(channel, 'game_request', {:from => current_user.id, :invitation => @invitation.id })
+    Pusher.trigger(channel, 'game_request', {:from => current_user.id, :sender => current_user.name, :invitation => @invitation.id })
   end
 
   private
