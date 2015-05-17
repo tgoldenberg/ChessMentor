@@ -21,6 +21,7 @@
       %table.tables
         %tbody{id: 'mentor-search-table'}
           - @users.each do |mentor|
-            %tr
-              %td
-                <a data-remote="true" href='/mentors/#{mentor.id}'> #{mentor.name} <span class="badge-success"> #{mentor.official_ranking} </span> </a>
+            - if mentor.class != Mentor
+              %tr
+                %td
+                  <a data-remote="true" href='/mentors/#{mentor.id}'> #{mentor.name} <span class="badge-success"> #{mentor.official_ranking} </span> </a>

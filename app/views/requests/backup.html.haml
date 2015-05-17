@@ -1,5 +1,7 @@
+.stripe-button Purchase
 .field{style: 'text-align: center;'}
-  - if !@charge
+
+  - if @charge
     %p
       To process your request we need to save your <em>payment information</em>. Click below to save your information with our secure payment gateway, <b>Stripe</b>.
     %p
@@ -13,8 +15,9 @@
       = f.hidden_field :vendor_id, value: params[:recipient_id]
       = f.hidden_field :token
       = f.hidden_field :customer_id
+      = f.submit 'Send', id: 'charge-submit'
 
-      %script{src:"https://checkout.stripe.com/checkout.js", class:"stripe-button", data: {key: ENV["stripe_publishable_key"], price:"#{@request.recipient.price*100}", name:"ChessMentor", vendor_id: "#{@request.recipient.id}", description: "#{number_to_currency(@request.recipient.price)}", image: "/assets/landing_background.png"}}
+
 
     %span.glyphicon.glyphicon-check.red Pending
 
@@ -23,7 +26,7 @@
     %p Your payment information was saved successfully. Fill out the form below and submit a request!
     %span.glyphicon.glyphicon-check.green{style: 'color:green; font-size: 1.5em;'} OK!
 
-= simple_form_for @request do |f|
+= simple_form_for @request, remote: true do |f|
   - if @request.errors.any?
     #error_explanation
       %h2= "#{pluralize(@request.errors.count, "error")} prohibited this request from being saved:"
@@ -110,4 +113,6 @@
   .actions
     = f.submit 'Save', class: 'button'
 
-%script{src:"https://checkout.stripe.com/checkout.js", class:"stripe-button", data: {key: ENV["stripe_publishable_key"], price:"#{@request.recipient.price*100}", name:"ChessMentor", vendor_id: "#{@request.recipient.id}", description: "#{number_to_currency(@request.recipient.price)}", image: "/assets/landing_background.png"}}
+%script{src:"https://checkout.stripe.com/checkout.js"}
+:javascript
+  window.stripeKey = '#{ENV["stripe_publishable_key"]}'

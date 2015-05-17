@@ -11,8 +11,14 @@
 // about supported directives.
 //
 
-//= require jquery.jcrop
-//= require papercrop
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require jquery.jcrop
+//= require papercrop
+//= require chessboard
+// require filestyle
+//= require init
+// require_tree ./lib
+// require_tree ./modules
+//= require_tree ./controllers
+//= require location
