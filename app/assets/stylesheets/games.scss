@@ -2,8 +2,62 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .games-show-wrapper {
+  padding: 10px;
 
-  h1 {
-    color: black;
+  .first-row {
+    background: #f7f7f7;
+
+    .user-profiles {
+      float: left;
+      width: 230px;
+      height: 500px;
+      background: $aqua-green;
+
+      .player1-profile {
+        display: block;
+        height: 50%;
+        background: grey;
+
+      }
+      .player2-profile {
+        display: block;
+        height: 50%;
+        background: $dark-green;
+
+      }
+    }
+    .board-wrapper {
+      margin-left: 10px;
+      width: 550px;
+      height: 550px;
+      background: blue;
+      clear: both;
+      display: inline-block;
+
+    }
+    .captured-pieces {
+      width: 170px;
+      height: 550px;
+      background: red;
+      display: inline-block;
+      .captured-black {
+        height: 50%;
+        background: black;
+      }
+      .captured-white {
+        height: 50%;
+        background: #777;
+
+      }
+
+    }
+    .notation-wrapper {
+      height: 550px;
+      width: 265px;
+      background: orange;
+      float: right;
+
+    }
   }
+  .message-wrapper {}
 }

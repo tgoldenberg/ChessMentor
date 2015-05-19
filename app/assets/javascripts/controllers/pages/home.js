@@ -1,7 +1,8 @@
 
 window.App.controllers.pages.home = function() {
-
+  
   var setBoard = function() {
+    console.log("SETTING BOARD");
     if ($('#board').length && $('#board2').length && $('#board3').length) {
       var cfg = {
         pieceTheme: '/assets/{piece}.png',
@@ -15,7 +16,7 @@ window.App.controllers.pages.home = function() {
       cfg.position = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R';
       var board3 = new ChessBoard('board3', cfg);
     }
-  }
+  };
 
   var dropdownShow = function() {
     $(".dropdown-menu").toggleClass("show-menu");
@@ -25,16 +26,16 @@ window.App.controllers.pages.home = function() {
     $(".dropdown-menu.dropdown-select > li").click(function() {
       $(".dropdown-button").html($(this).html());
     });
-  }
+  };
 
   var signUp = function() {
     $('#signup-button').click(function() {
       $('.modal-fade-screen').css({'opacity':1, 'visibility':'visible'});
-    })
-  }
+    });
+  };
 
-  setBoard();
   signUp();
+  setBoard();
   $('.dropdown-button').click(dropdownShow);
 
 }
