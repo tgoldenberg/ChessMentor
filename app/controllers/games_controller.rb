@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @move = Move.new(:game => @game)
+    @move = Move.new(:room_id => @game.id)
     @moves = @game.moves.all
     #Check to see if there is an existing conversation. If not, create a new one
   end

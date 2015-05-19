@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @mentors = Mentor.all
     @user = User.new
+    @game = Game.new
     @users = User.all
     @conversation = Conversation.new
     if current_user
