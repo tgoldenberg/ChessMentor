@@ -1,10 +1,10 @@
 class PusherController < ApplicationController
   protect_from_forgery :except => :auth
-    def auth
-      if current_user    
-        response =  Pusher[params[:channel_name]].authenticate(params[:socket_id])
+  def auth
+    if current_user
+      response =  Pusher[params[:channel_name]].authenticate(params[:socket_id])
       render :json => response
-        else
+    else
       render :text => 'Forbidden', :status => '403'
     end
   end

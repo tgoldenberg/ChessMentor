@@ -27,7 +27,14 @@ window.App.controllers.pages.home = function() {
     });
   }
 
+  var signUp = function() {
+    $('#signup-button').click(function() {
+      $('.modal-fade-screen').css({'opacity':1, 'visibility':'visible'});
+    })
+  }
+
   setBoard();
+  signUp();
   $('.dropdown-button').click(dropdownShow);
 
 }
