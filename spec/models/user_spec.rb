@@ -3,7 +3,15 @@ require 'rails_helper'
 
 describe User do
   it 'has a valid factory' do
-    FactoryGirl.create(:user).should be_valid
+    expect(FactoryGirl.create(:user)).to be_valid
+  end
+
+  it 'should be invalid without name' do
+    expect(FactoryGirl.build(:user, name: nil)).to_not be_valid
+  end
+
+  it 'should be invalid without email' do
+    expect(FactoryGirl.build(:user, email: nil)).to_not be_valid
   end
 
 # it 'can sign up'
