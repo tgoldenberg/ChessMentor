@@ -1,11 +1,51 @@
 .games-show-wrapper
   .first-row
     .user-profiles
-      .player1-profile
-      .player2-profile
+      .player-profile{id: 'player1-profile'}
+        .player-header
+          %span.glyphicon.glyphicon-user
+          %p #{@game.player1.name}
+          %span.glyphicon.glyphicon-minus
+        .player-content
+          %p #{@game.player1.city}
+          %p #{@game.player1.official_ranking}
+        .time-wrapper{id: 'player1-timer'}
+      .player-profile{id: 'player2-profile'}
+        .player-header
+          %span.glyphicon.glyphicon-user
+          %p #{@game.player2.name}
+          %span.glyphicon.glyphicon-minus
+        .player-content
+          %p #{@game.player2.city}
+          %p #{@game.player2.official_ranking}
+        .time-wrapper{id: 'player2-timer'}
+
     .board-wrapper
+
     .captured-pieces
-      .captured-black
-      .captured-white
+      .captured{id: 'captured-black'}
+        .captured-header
+          %span.glyphicon.glyphicon-tower
+          %p Captured Black
+        .captured-holder{id: 'captured-pieces-black'}
+
+      .captured{id: 'captured-white'}
+        .captured-header
+          %span.glyphicon.glyphicon-tower
+          %p Captured White
+          %span.glyphicon.glyphicon-minus
+        .captured-holder{id: 'captured-pieces-white'}
+
     .notation-wrapper
+      .notation-header
+        %span.glyphicon.glyphicon-bishope
+        %p Moves
+        %span.glyphicon.glyphicon-minus
+      .notation-holder
   .message-wrapper
+
+= form_for [@game, @move], remote: true do |f|
+  = f.hidden_field :notation
+  = f.hidden_field :piece
+  = f.hidden_field :game_id
+  = f.hidden_field :user_id

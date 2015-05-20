@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :boards
 
   resources :games do

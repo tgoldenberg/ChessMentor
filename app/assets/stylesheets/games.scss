@@ -13,13 +13,55 @@
       height: 500px;
       background: $aqua-green;
 
-      .player1-profile {
+      .player-profile {
+
+        .player-header {
+          display: flex;
+          height: 46px;
+
+          .glyphicon-user {
+            float: left;
+            top: 0px;
+            left: 0px;
+            font-size: 1.8em;
+            background: $dark-green;
+            padding: 10px;
+            color: white;
+            width: 45px;
+          }
+
+          p {
+            float: left;
+            font-size: 1.4em;
+            color: white;
+            background: $aqua-green;
+            margin-top: 0px;
+            padding-left: 20px;
+            padding-top: 10.5px;
+            padding-bottom: 35px;
+            padding-right: 42%;
+          }
+          span.glyphicon.glyphicon-minus {
+            display: inline-block;
+            background: $aqua-green;
+            font-size: 1.8em;
+            padding: 10px;
+            color: white;
+            width: 45px;
+            top: 0px;
+            left: 0px;
+          }
+        }
+      }
+
+
+      #player1-profile {
         display: block;
         height: 50%;
         background: grey;
 
       }
-      .player2-profile {
+      #player2-profile {
         display: block;
         height: 50%;
         background: $dark-green;
@@ -40,23 +82,97 @@
       height: 550px;
       background: red;
       display: inline-block;
-      .captured-black {
-        height: 50%;
+
+      #captured-black {
         background: black;
       }
-      .captured-white {
+
+      .captured {
         height: 50%;
-        background: #777;
 
+        .captured-header {
+          display: flex;
+          height: 46px;
+
+          span.glyphicon.glyphicon-tower {
+            float: left;
+            top: 0px;
+            left: 0px;
+            font-size: 1.8em;
+            background: $dark-green;
+            padding: 10px;
+            color: white;
+            width: 45px;
+          }
+          p {
+            float: left;
+            font-size: 1.4em;
+            color: white;
+            background: $aqua-green;
+            margin-top: 0px;
+            padding-left: 20px;
+            padding-top: 10.5px;
+            padding-bottom: 35px;
+            padding-right: 42%;
+          }
+          span.glyphicon.glyphicon-minus  {
+            display: inline-block;
+            top: 0px;
+            left: 0px;
+            font-size: 1.8em;
+            background: $aqua-green;
+            padding: 10px;
+            color: white;
+            width: 45px;
+          }
+        }
       }
-
+      #captured-white {
+        background: #777;
+      }
     }
     .notation-wrapper {
-      height: 550px;
+      height: 400px;
       width: 265px;
       background: orange;
       float: right;
 
+      .notation-header {
+        display: flex;
+        height: 46px;
+
+        span.glyphicon.glyphicon-bishop {
+          float: left;
+          top: 0px;
+          left: 0px;
+          font-size: 1.8em;
+          background: $dark-green;
+          padding: 10px;
+          color: white;
+          width: 45px;
+        }
+        p {
+          float: left;
+          font-size: 1.4em;
+          color: white;
+          background: $aqua-green;
+          margin-top: 0px;
+          padding-left: 20px;
+          padding-top: 10.5px;
+          padding-bottom: 35px;
+          padding-right: 42%;
+        }
+        span.glyphicon.glyphicon-minus  {
+          display: inline-block;
+          top: 0px;
+          left: 0px;
+          font-size: 1.8em;
+          background: $aqua-green;
+          padding: 10px;
+          color: white;
+          width: 45px;
+        }
+      }
     }
   }
   .message-wrapper {}
