@@ -1,14 +1,12 @@
-console.log("HELLO");
+$("body").addClass("modal-open");
+$('.modal-content').html("<%= escape_javascript(render 'form') %>");
+$('.modal-fade-screen').css({'opacity':1, 'visibility': 'visible'});
 
-  $("body").addClass("modal-open");
-  $('.modal-content').html("<%= escape_javascript(render 'form') %>");
-  $('.modal-fade-screen').css({'opacity':1, 'visibility': 'visible'});
+$(".modal-fade-screen, .modal-close").on("click", function() {
+  $("body").removeClass("modal-open");
+  $(".modal-fade-screen").css('visibility', 'hidden');
+});
 
-  $(".modal-fade-screen, .modal-close").on("click", function() {
-    $("body").removeClass("modal-open");
-    $(".modal-fade-screen").css('visibility', 'hidden');
-  });
-
-  $(".modal-inner").on("click", function(e) {
-    e.stopPropagation();
-  });
+$(".modal-inner").on("click", function(e) {
+  e.stopPropagation();
+});

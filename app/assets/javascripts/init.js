@@ -1,6 +1,8 @@
 window.App = {
   controllers: {
     requests: {},
-    pages: {}
+    pages: {},
+    registrations: {},
+    sessions: {}
   }
 }

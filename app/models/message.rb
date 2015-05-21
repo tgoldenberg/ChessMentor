@@ -2,6 +2,9 @@ class Message < ActiveRecord::Base
   validates :sender_id, presence: true
   validates :recipient_id, presence: true
   validates :body, presence: true
+  validates_uniqueness_of :sender_id,
+    scope: :recipient_id,
+    message: 'cannot have same sender and recipient'
 
   belongs_to :conversation
   belongs_to :sender, :foreign_key => :sender_id, class_name: 'User'

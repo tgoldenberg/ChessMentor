@@ -46,4 +46,5 @@ group :test do
   gem 'faker'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end

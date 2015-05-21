@@ -9,5 +9,11 @@ $(function() {
     case "pages_home" :
       App.controllers.pages.home();
       break;
+    case "registrations_new" :
+      App.controllers.registrations.new();
+      break;
+    case "sessions_new" :
+      App.controllers.sessions.new();
+      break;
   }
 });
