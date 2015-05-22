@@ -2,7 +2,7 @@ class MovesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @game = Game.find(params[:room_id])
+    @game = Game.find(params[:game_id])
     @moves = @game.moves.all
   end
 
@@ -14,16 +14,17 @@ class MovesController < ApplicationController
   def create
     @game = Game.find(params[:game_id])
     @move = @game.moves.build move_params
+    if @game.player1_id == current_user.id
+      @id = @game.player2_id
+    elsif @game.player2_id == current_user.id
+      @id = @game.player1_id
+    end
     if @move.save
       redirect_to game_move_path(@game, @move)
       # find the opponent's id for private channel
-      if @game.player1_id == current_user.id
-        id = @game.player2_id.to_s
-      elsif @game.player2_id == current_user.id
-        id = @game.player1_id.to_s
-      end
+
     end
-    channel = 'private-conversation.' + id
+    channel = 'private-conversation.' + @id.to_s
     Pusher.trigger(channel, 'new_move', {user: @move.user_id, game: @move.game_id, fen: @move.piece, object_notation: @move.notation})
   end
 

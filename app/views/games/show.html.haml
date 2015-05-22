@@ -57,24 +57,10 @@
         %span.glyphicon.glyphicon-minus
       .table-wrapper
         %table.tables.notation-holder
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
+          - @moves.each do |move|
+            %tr
+              %td.grey-highlight #{move.notation}
+
 
   .message-wrapper
 
@@ -88,3 +74,5 @@
 
 %script{src: '/assets/lib/chess.js'}
 %script{src: "https://cdn.cine.io/cineio-peer.js"}
+
+:javascript

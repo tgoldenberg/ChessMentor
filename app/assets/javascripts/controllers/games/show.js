@@ -4,51 +4,48 @@ window.App.controllers.games.show = function() {
 
   }
 
+  // set timer
+  var addedTimePerMove, formatTime, initialTime, intervalId, pad, remainingTime, switchTurn, turn, update;
+  initialTime = 15 * 60;
+  addedTimePerMove = 0;
+  turn = 1;
+  remainingTime = [initialTime, initialTime];
+  pad = function(x) {
+   return ('0' + x).slice(-2);
+  };
+  formatTime = function(t) {
+   var hours, minutes, seconds;
+   seconds = t % 60;
+   minutes = Math.floor(t / 60) % 60;
+   hours = Math.floor(t / 3600);
+   if (hours) {
+     return "" + hours + ":" + (pad(minutes)) + ":" + (pad(seconds));
+   } else {
+     return "" + minutes + ":" + (pad(seconds));
+   }
+  };
+  update = function() {
+   var i;
+   remainingTime[turn]--;
+   for (i = 0; i < 2; i++) {
+     $("#time" + i).text(formatTime(remainingTime[i]));
+   }
+   if (remainingTime[turn] <= 0) {
+     $("#time" + turn).removeClass('turn').addClass('loser');
+     alert('Game Over');
+     return clearInterval(intervalId);
+   }
+  };
+  switchTurn = function() {
+     $("#time" + turn).removeClass('turn');
+     turn = 1 - turn;
+     $("#time" + turn).addClass('turn');
+     return remainingTime[turn] += addedTimePerMove;
+  };
 
-  var startTimer = function() {
-    // set timer
-    var addedTimePerMove, formatTime, initialTime, intervalId, pad, remainingTime, switchTurn, turn, update;
-    initialTime = 15 * 60;
-    addedTimePerMove = 0;
-    turn = 1;
-    remainingTime = [initialTime, initialTime];
-    pad = function(x) {
-     return ('0' + x).slice(-2);
-    };
-    formatTime = function(t) {
-     var hours, minutes, seconds;
-     seconds = t % 60;
-     minutes = Math.floor(t / 60) % 60;
-     hours = Math.floor(t / 3600);
-     if (hours) {
-       return "" + hours + ":" + (pad(minutes)) + ":" + (pad(seconds));
-     } else {
-       return "" + minutes + ":" + (pad(seconds));
-     }
-    };
-    update = function() {
-     var i;
-     remainingTime[turn]--;
-     for (i = 0; i < 2; i++) {
-       $("#time" + i).text(formatTime(remainingTime[i]));
-     }
-     if (remainingTime[turn] <= 0) {
-       $("#time" + turn).removeClass('turn').addClass('loser');
-       alert('Game Over');
-       return clearInterval(intervalId);
-     }
-    };
-    switchTurn = function() {
-       $("#time" + turn).removeClass('turn');
-       turn = 1 - turn;
-       $("#time" + turn).addClass('turn');
-       return remainingTime[turn] += addedTimePerMove;
-    };
-    $('#time1').addClass('turn');
-     return intervalId = setInterval(update, 1000);
-  }
 
   var startChessGame = function() {
+
     var player1 = $('.games-show-wrapper').data('player1');
     var player2 = $('.games-show-wrapper').data('player2');
     var currentUser = $('.games-show-wrapper').data('currentUser');
@@ -84,6 +81,7 @@ window.App.controllers.games.show = function() {
       // $('.text-list').append('<tr id="' + trNum + '"><th><b>' + trNum + '</b> <div class="pipe">|</div> ' + move.from + "-" + move.to + '</th></tr>');
 
       updateStatus(source, target);
+      switchTurn();
     };
 
     // update the board position after the piece snap
@@ -141,6 +139,8 @@ window.App.controllers.games.show = function() {
       onSnapEnd: onSnapEnd
     };
     board = new ChessBoard('board', cfg);
+
+
     var currentUser = $('.games-show-wrapper').data('currentuser');
     var player1 = $('.games-show-wrapper').data('player1');
     var player2 = $('.games-show-wrapper').data('player2');
@@ -152,9 +152,9 @@ window.App.controllers.games.show = function() {
     updateStatus();
   };
 
-
   startChessGame();
-  startTimer();
   createTurns();
+  $('#time1').addClass('turn');
+  return intervalId = setInterval(update, 1000);
 
 }
