@@ -2,7 +2,7 @@
   .top-wrapper
     .photo-wrapper
       .round-photo-wrapper
-        = image_tag @mentor.avatar.url(:thumb)
+        = image_tag @mentor.avatar.url(:thumb), width: '104', class: 'thumb-profile'
     .greeting-wrapper
       %h2 #{@mentor.name}
       %p #{@mentor.city}

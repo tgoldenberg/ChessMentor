@@ -21,7 +21,9 @@
 
 //= require jcrop
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
-
+.notice {
+  color: #b4b4b4;
+}
 @keyframes pulse {
   0% {
     transform: scale3d(1, 1, 1);

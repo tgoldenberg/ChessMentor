@@ -23,5 +23,5 @@
           - @users.each do |mentor|
             - if mentor.class != Mentor
               %tr
-                %td
+                %td.grey-highlight
                   <a data-remote="true" href='/mentors/#{mentor.id}'> #{mentor.name} <span class="badge-success"> #{mentor.official_ranking} </span> </a>

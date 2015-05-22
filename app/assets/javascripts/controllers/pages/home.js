@@ -1,8 +1,10 @@
 
 window.App.controllers.pages.home = function() {
-  
+  if ( <%= user_signed_in? %>) {
+
+
+
   var setBoard = function() {
-    console.log("SETTING BOARD");
     if ($('#board').length && $('#board2').length && $('#board3').length) {
       var cfg = {
         pieceTheme: '/assets/{piece}.png',
@@ -28,14 +30,7 @@ window.App.controllers.pages.home = function() {
     });
   };
 
-  var signUp = function() {
-    $('#signup-button').click(function() {
-      $('.modal-fade-screen').css({'opacity':1, 'visibility':'visible'});
-    });
-  };
-
-  signUp();
   setBoard();
   $('.dropdown-button').click(dropdownShow);
-
+  }
 }
