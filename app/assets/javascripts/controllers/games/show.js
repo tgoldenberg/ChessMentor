@@ -125,7 +125,6 @@ window.App.controllers.games.show = function() {
       pgnEl.html(game.pgn());
       $('#move-notation').val(source + '-' + target);
       $('#move-piece').val(game.fen());
-      $('#move-user').val(currentUser)
       $('#move-submit').submit();
     };
 
@@ -148,7 +147,6 @@ window.App.controllers.games.show = function() {
 
     if (currentUser == player2) {
       board.orientation("black");
-      console.log(board.orientation);
     }
 
     updateStatus();

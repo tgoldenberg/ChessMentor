@@ -75,25 +75,15 @@
             %td.grey-highlight move
           %tr
             %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
-          %tr
-            %td.grey-highlight move
+
   .message-wrapper
 
 = form_for [@game, @move], remote: true do |f|
   = f.hidden_field :notation, id: "move-notation"
   = f.hidden_field :piece, id: "move-piece"
   = f.hidden_field :game_id, value: @game.id
-  = f.hidden_field :user_id, id: current_user.id
+  = f.hidden_field :user_id, value: current_user.id
+  = f.submit "", :id => 'move-submit', :style => 'display: none;'
 
 
 %script{src: '/assets/lib/chess.js'}
