@@ -106,6 +106,7 @@
       var target = data.object_notation.split('-')[1]
       onDrop(data.object_notation.split('-')[0], data.object_notation.split('-')[1]);
       board.move(data.object_notation);
+      board.move({from: source, to: target})
       switchTurn();
     });
     $('#time1').addClass('turn');
