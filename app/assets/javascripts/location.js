@@ -1,5 +1,4 @@
 $(function() {
-  console.log(window.App);
   loc = $('body').attr('class');
   console.log(loc);
   switch(loc) {
@@ -8,6 +7,9 @@ $(function() {
       break;
     case "pages_home" :
       App.controllers.pages.home();
+      break;
+    case "games_show" :
+      App.controllers.games.show();
       break;
   }
 });

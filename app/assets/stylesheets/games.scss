@@ -2,7 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .games-show-wrapper {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  background: #f7f7f7;
 
   .first-row {
     background: #f7f7f7;
@@ -11,13 +14,14 @@
       float: left;
       width: 230px;
       height: 500px;
-      background: $aqua-green;
+      background: #f7f7f7;
 
       .player-profile {
 
         .player-header {
           display: flex;
           height: 46px;
+          background: $aqua-green;
 
           .glyphicon-user {
             float: left;
@@ -27,7 +31,7 @@
             background: $dark-green;
             padding: 10px;
             color: white;
-            width: 45px;
+            width: 60px;
           }
 
           p {
@@ -49,22 +53,38 @@
             color: white;
             width: 45px;
             top: 0px;
-            left: 0px;
+            left: -8px;
           }
         }
       }
-
+      .player-content {
+        p {
+          padding: 10px;
+        }
+      }
+      .time-wrapper {
+        height: 55px;
+        width: 72%;
+        background: $dark-red;
+        margin: auto;
+        border-radius: 3px;
+        margin-top: 10px;
+        color: white;
+        font-size: 34px;
+        font-weight: 300;
+        text-align: center;
+      }
 
       #player1-profile {
         display: block;
         height: 50%;
-        background: grey;
+        background: #e6e6e6;
 
       }
       #player2-profile {
         display: block;
         height: 50%;
-        background: $dark-green;
+        background: #e6e6e6;
 
       }
     }
@@ -72,7 +92,7 @@
       margin-left: 10px;
       width: 550px;
       height: 550px;
-      background: blue;
+      background: #e6e6e6;
       clear: both;
       display: inline-block;
 
@@ -80,45 +100,51 @@
     .captured-pieces {
       width: 170px;
       height: 550px;
-      background: red;
+      background: #f7f7f7;
       display: inline-block;
+      vertical-align: bottom;
 
       #captured-black {
-        background: black;
       }
 
       .captured {
-        height: 50%;
+        height: 47.6%;
+        margin-bottom:10px;
+        display:block;
+        clear: both;
+        background: #efefef;
 
         .captured-header {
           display: flex;
           height: 46px;
+          background: $aqua-green;
 
           span.glyphicon.glyphicon-tower {
             float: left;
             top: 0px;
             left: 0px;
-            font-size: 1.8em;
-            background: $dark-green;
+            font-size: 1.5em;
+            background: #548271;
             padding: 10px;
             color: white;
-            width: 45px;
+            width: 115px;
           }
           p {
             float: left;
-            font-size: 1.4em;
+            font-size: 1em;
+            text-align: center;
             color: white;
-            background: $aqua-green;
+            background: #78baa1;
             margin-top: 0px;
             padding-left: 20px;
-            padding-top: 10.5px;
-            padding-bottom: 35px;
+            padding-top: 4.5px;
+            padding-bottom: 41px;
             padding-right: 42%;
           }
           span.glyphicon.glyphicon-minus  {
             display: inline-block;
             top: 0px;
-            left: 0px;
+            left: -14px;
             font-size: 1.8em;
             background: $aqua-green;
             padding: 10px;
@@ -128,14 +154,17 @@
         }
       }
       #captured-white {
-        background: #777;
       }
     }
     .notation-wrapper {
       height: 400px;
       width: 265px;
-      background: orange;
+      background: #e6e6e6;
       float: right;
+      .table-wrapper {
+        height: 372px;
+        overflow-y: auto;
+      }
 
       .notation-header {
         display: flex;
@@ -161,6 +190,7 @@
           padding-top: 10.5px;
           padding-bottom: 35px;
           padding-right: 42%;
+          width: 220px;
         }
         span.glyphicon.glyphicon-minus  {
           display: inline-block;
@@ -171,6 +201,10 @@
           padding: 10px;
           color: white;
           width: 45px;
+        }
+
+        .notation-holder {
+          overflow-y: auto;
         }
       }
     }

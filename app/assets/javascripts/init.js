@@ -1,6 +1,7 @@
 window.App = {
   controllers: {
     requests: {},
-    pages: {}
+    pages: {},
+    games: {}
   }
 }

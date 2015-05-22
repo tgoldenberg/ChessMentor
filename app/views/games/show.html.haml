@@ -1,4 +1,4 @@
-.games-show-wrapper
+.games-show-wrapper{data: {player1: "#{@game.player1_id}", player2: "#{@game.player2_id}", currentUser: "#{current_user.id}"}}
   .first-row
     .user-profiles
       .player-profile{id: 'player1-profile'}
@@ -6,27 +6,41 @@
           %span.glyphicon.glyphicon-user
           %p #{@game.player1.name}
           %span.glyphicon.glyphicon-minus
-        .player-content
-          %p #{@game.player1.city}
-          %p #{@game.player1.official_ranking}
-        .time-wrapper{id: 'player1-timer'}
+        %table.tables.player-content
+          %tbody
+            %tr
+              %td.grey-highlight Ranking: #{@game.player1.official_ranking}
+            %tr
+              %td.grey-highlight City: #{@game.player1.city}
+            %tr
+              %td.grey-highlight Country #{@game.player1.country}
+        .time-wrapper{id: 'time0'}
+      %br/
       .player-profile{id: 'player2-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
           %p #{@game.player2.name}
           %span.glyphicon.glyphicon-minus
-        .player-content
-          %p #{@game.player2.city}
-          %p #{@game.player2.official_ranking}
-        .time-wrapper{id: 'player2-timer'}
+        %table.tables.player-content
+          %tbody
+            %tr
+              %td.grey-highlight Ranking: #{@game.player2.official_ranking}
+            %tr
+              %td.grey-highlight City: #{@game.player2.city}
+            %tr
+              %td.grey-highlight Country: #{@game.player2.country}
 
-    .board-wrapper
+        .time-wrapper{id: 'time1'}
+
+    .board-wrapper{id: 'board'}
+
 
     .captured-pieces
       .captured{id: 'captured-black'}
         .captured-header
           %span.glyphicon.glyphicon-tower
           %p Captured Black
+          %span.glyphicon.glyphicon-minus
         .captured-holder{id: 'captured-pieces-black'}
 
       .captured{id: 'captured-white'}
@@ -38,14 +52,49 @@
 
     .notation-wrapper
       .notation-header
-        %span.glyphicon.glyphicon-bishope
+        %span.glyphicon.glyphicon-bishop
         %p Moves
         %span.glyphicon.glyphicon-minus
-      .notation-holder
+      .table-wrapper
+        %table.tables.notation-holder
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
+          %tr
+            %td.grey-highlight move
   .message-wrapper
 
 = form_for [@game, @move], remote: true do |f|
-  = f.hidden_field :notation
-  = f.hidden_field :piece
-  = f.hidden_field :game_id
-  = f.hidden_field :user_id
+  = f.hidden_field :notation, id: "move-notation"
+  = f.hidden_field :piece, id: "move-piece"
+  = f.hidden_field :game_id, value: @game.id
+  = f.hidden_field :user_id, id: current_user.id
+
+
+%script{src: '/assets/lib/chess.js'}
+%script{src: "https://cdn.cine.io/cineio-peer.js"}
