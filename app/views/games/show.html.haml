@@ -74,5 +74,42 @@
 
 %script{src: '/assets/lib/chess.js'}
 %script{src: "https://cdn.cine.io/cineio-peer.js"}
+%script{src: '/assets/chessboard.js'}
+%script{src: '/assets/set_new_board.js'}
+%script{src: '/assets/timer.js'}
+
+-# %script{src: '/assets/modules/new_board.js'}
 
 :javascript
+  $(function() {
+  // set timer
+    updateStatus();
+
+    var currentUser = $('.games-show-wrapper').data('currentuser');
+    var player1 = $('.games-show-wrapper').data('player1');
+    var player2 = $('.games-show-wrapper').data('player2');
+
+    if (currentUser == player2) {
+      board.orientation("black");
+    }
+
+    var pusher = new Pusher('f74ddd7f3eae987007b6');
+    var channelName = 'private-conversation.' + $('.games-show-wrapper').data("currentuser");
+    var channel = pusher.subscribe(channelName);
+    // Pusher event for new chatbox message
+
+    // Pusher event for new chess move
+    channel.bind('new_move', function(data) {
+      console.log(data);
+      // onDrop(data.object_notation.split('-')[0], data.object_notation.split('-')[1]);
+      var source = data.object_notation.split('-')[0]
+      var target = data.object_notation.split('-')[1]
+      onDrop(data.object_notation.split('-')[0], data.object_notation.split('-')[1]);
+      board.move(data.object_notation);
+      switchTurn();
+    });
+    $('#time1').addClass('turn');
+    return intervalId = setInterval(update, 1000);
+    // assign Pusher key and channel name
+
+  });

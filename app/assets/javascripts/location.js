@@ -8,8 +8,5 @@ $(function() {
     case "pages_home" :
       App.controllers.pages.home();
       break;
-    case "games_show" :
-      App.controllers.games.show();
-      break;
   }
 });
