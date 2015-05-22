@@ -1,2 +1,3 @@
 %tr
-  %td.grey-highlight #{@move.notation}
+  %td.grey-highlight
+    = link_to "#{@move.notation}", new_board_path(move_id: @move.id, fen: @move.piece), remote: true

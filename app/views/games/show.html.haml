@@ -57,9 +57,11 @@
         %span.glyphicon.glyphicon-minus
       .table-wrapper
         %table.tables.notation-holder
-          - @moves.each do |move|
-            %tr
-              %td.grey-highlight #{move.notation}
+          - @moves.each_with_index do |move, idx|
+            - if idx.even?
+              %tr
+                %td.grey-highlight
+                  = link_to "#{move.notation}", new_board_path(move_id: move.id, fen: move.piece), remote: true
 
 
   .message-wrapper
@@ -108,6 +110,11 @@
       board.move(data.object_notation);
       board.move({from: source, to: target})
       switchTurn();
+    });
+
+    channel.bind('rearrange_board', function(data) {
+      console.log(data.fen);
+      board.position(data.fen);
     });
     $('#time1').addClass('turn');
     return intervalId = setInterval(update, 1000);

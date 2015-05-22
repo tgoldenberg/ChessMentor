@@ -1,25 +1,18 @@
 class BoardsController < ApplicationController
   respond_to :html, :js
 
-  def show
-    @board = Board.find(params[:id])
-    id = ""
-    if current_user.id == @board.move.game.player1_id
-      id = @board.move.game.player2_id
-    else
-      id = @board.move.game.player1_id
-    end
-    # find opponent user and id and send Pusher notification to change the board position
-    channel = 'private-conversation.' + id.to_s
-    Pusher.trigger(channel, 'rearrange_board', { :fen => @board.fen })
-  end
-
   def new
     @board = Board.new
     @board.move_id = params[:move_id]
     @board.fen = params[:fen]
+    if current_user.id == @board.move.game.player1_id
+      @id = @board.move.game.player2_id
+    else
+      @id = @board.move.game.player1_id
+    end
     @board.save
-    redirect_to @board
+    channel = 'private-conversation.' + @id.to_s
+    Pusher.trigger(channel, 'rearrange_board', { :fen => @board.fen })
   end
 
   private

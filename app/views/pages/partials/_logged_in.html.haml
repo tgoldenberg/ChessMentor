@@ -1,6 +1,6 @@
 -# = render 'pages/partials/header'
 
-.top-content-wrapper
+.top-content-wrapper{data: {user: "#{current_user ? current_user.id : "none"}"}}
   .left-side-wrapper
     -# content for message to user
     .message-wrapper

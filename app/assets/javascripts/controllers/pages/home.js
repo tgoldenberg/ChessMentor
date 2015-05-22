@@ -1,8 +1,5 @@
 
 window.App.controllers.pages.home = function() {
-  if ( <%= user_signed_in? %>) {
-
-
 
   var setBoard = function() {
     if ($('#board').length && $('#board2').length && $('#board3').length) {
@@ -32,5 +29,5 @@ window.App.controllers.pages.home = function() {
 
   setBoard();
   $('.dropdown-button').click(dropdownShow);
-  }
+  
 }
