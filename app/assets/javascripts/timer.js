@@ -26,7 +26,11 @@ update = function() {
  }
  if (remainingTime[turn] <= 0) {
    $("#time" + turn).removeClass('turn').addClass('loser');
-   alert('Game Over');
+  //  alert('game over');
+   game.game_over() = true;
+   loser = game.turn();
+   videoConference(loser);
+
    return clearInterval(intervalId);
  }
 };

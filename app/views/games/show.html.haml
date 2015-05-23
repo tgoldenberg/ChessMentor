@@ -1,6 +1,6 @@
 .games-show-wrapper{data: {player1: "#{@game.player1_id}", player2: "#{@game.player2_id}", currentUser: "#{current_user.id}"}}
   .first-row
-    .user-profiles
+    .user-profiles.animated
       .player-profile{id: 'player1-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
@@ -16,7 +16,7 @@
               %td.grey-highlight Country #{@game.player1.country}
         .time-wrapper{id: 'time0'}
       %br/
-      .player-profile{id: 'player2-profile'}
+      .player-profile.animated{id: 'player2-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
           %p #{@game.player2.name}
@@ -35,7 +35,7 @@
     .board-wrapper{id: 'board'}
 
 
-    .captured-pieces
+    .captured-pieces.animated
       .captured{id: 'captured-black'}
         .captured-header
           %span.glyphicon.glyphicon-tower
@@ -73,12 +73,25 @@
   = f.hidden_field :user_id, value: current_user.id
   = f.submit "", :id => 'move-submit', :style => 'display: none;'
 
+.game-over.animated.bounceIn{style: 'display: none;'}
+  %h1 Game Over: White Wins!
+  %p Get ready for your aftergame debrief
+
+.video-box{style: 'display:none;'}
+  .video-screen{id: 'otherVideos'}
+  .video-controls
+    %button.button{id: 'camera'} Camera
+    %button.button Audio
+
+.video-box-self{id: 'myVideo', style: 'display:none;'}
+
 
 %script{src: '/assets/lib/chess.js'}
 %script{src: "https://cdn.cine.io/cineio-peer.js"}
 %script{src: '/assets/chessboard.js'}
 %script{src: '/assets/set_new_board.js'}
 %script{src: '/assets/timer.js'}
+%script{src: '/assets/video_init.js'}
 
 -# %script{src: '/assets/modules/new_board.js'}
 
