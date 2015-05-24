@@ -16,8 +16,6 @@
 //= require jquery.jcrop
 //= require papercrop
 //= require chessboard
-//= require rails.validations
-//= require rails.validations.simple_form
 //= require init
 //= require_tree ./lib
 //= require_tree ./modules
