@@ -2,23 +2,26 @@
   .sign-in-header
     %h1{style: 'text-align: center;'} Sign up
     %i.glyphicon.glyphicon-knight{id: 'header-glyph'}
+  .devise-error-messages
 
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'sign_up_form'}, validate: true ) do |f|
+
     .field.inner-addon.left-addon{style: 'margin-top: 15px;'}
       %i.glyphicon.glyphicon-user{style: 'top: 15px; left: 7px;'}
-      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name'
+      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name', required: true
 
     .field.inner-addon.left-addon
       %i.glyphicon.glyphicon-envelope
-      = f.email_field :email, class: 'form-control', placeholder: 'Your Email'
+      = f.email_field :email, class: 'form-control', placeholder: 'Your Email', required: true
 
     .field.inner-addon.left-addon
       %i.glyphicon.glyphicon-lock
-      = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Your Password'
+      = f.password_field :password, autocomplete: 'off', class: 'form-control', id: 'password-first', placeholder: 'Your Password', required: true, minlength: "8"
 
     .field.inner-addon.left-addon
       %i.glyphicon.glyphicon-repeat
-      = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: 'Confirm Password'
+      = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: 'Confirm Password', required: true, minlength: "8", equalTo: "#password-first"
 
     .field
       = f.file_field :avatar, id: 'pictureInput', class: 'filestyle'
@@ -28,5 +31,22 @@
       #target
         %img{src: '/assets/missing.png', width:'100'}
 
-%script{src: '/assets/modules/devise.js'}
 %script{src: '/assets/filestyle.js'}
+%script{src: '/assets/lib/validate.js'}
+
+:javascript
+    $('#sign_up_form').validate();
+
+    $('#pictureInput').on('change', function(event) {
+     var files = event.target.files;
+     var image = files[0]
+     var reader = new FileReader();
+     reader.onload = function(file) {
+       var img = new Image();
+       img.width = 100;
+       console.log(file);
+       img.src = file.target.result;
+       $('#target').html(img);
+     }
+     reader.readAsDataURL(image);
+   });

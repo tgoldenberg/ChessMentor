@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
-  respond_to :html, :js
+  clear_respond_to
+  respond_to :html, :js, :json
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-
+  
   protected
 
   def configure_permitted_parameters

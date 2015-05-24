@@ -8,8 +8,10 @@
     .modal-close{for: 'modal-1'}
     .modal-content
 
+%script{src: '/assets/filestyle.js'}
   :javascript
     $(function() {
+      $(":file").filestyle({buttonText: " Upload avatar", buttonBefore: true});
 
       var pusher = new Pusher('f74ddd7f3eae987007b6');
       console.log(pusher);
