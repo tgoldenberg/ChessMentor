@@ -111,3 +111,21 @@
     color: $dark-red;
   }
 }
+#edit_user_form {
+  #city-field {
+    display: inline-block;
+    width: 45%;
+  }
+  #country-field {
+    display: inline-block;
+    width: 45%;
+  }
+  .form-label {
+    font-weight: 400;
+    color: #555;
+  }
+  .form-password-conf {
+    font-weight: 400;
+    color: #555;
+  }
+}
