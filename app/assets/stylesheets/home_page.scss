@@ -5,7 +5,7 @@
   .left-side-wrapper {
     @include span-columns(8 of 12, block-collapse);
     @include omega;
-    width: 800px;
+//   width: 800px;
 
     .message-wrapper {
       height: 139px;
@@ -178,7 +178,7 @@
     @include span-columns(4 of 12, block-collapse);
     @include omega(3n);
     height: 400px;
-    width: 369px;
+  //  width: 369px;
 
     .search-wrapper {
       margin-top: 16px;
