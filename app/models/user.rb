@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  validates :name, presence: true
+  validates :email, presence: true
+
   attr_accessor :avatar
   searchkick word_start: [:name]
 
