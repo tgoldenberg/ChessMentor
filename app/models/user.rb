@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
 
   attr_accessor :avatar
-  searchkick word_start: [:name]
+  # searchkick word_start: [:name]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
