@@ -7,9 +7,5 @@ Feature:
     Given I visit the home page
     And I hit the "Sign Up" button
     Then I should see "Sign up"
-
-  Scenario:
-    Given I am a signed up user
-    And I visit the home page
-    And I hit the "Sign In" button
-    Then I should see "Sign up"
+    Given I fill in the form and hit submit
+    Then I should see the home page
