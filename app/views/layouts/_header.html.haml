@@ -25,7 +25,7 @@
             %span.glyphicon.glyphicon-globe
               = link_to '', '#'
           %li.nav-link
-            = link_to 'Account', edit_user_registration_path
+            = link_to 'Account', edit_user_registration_path, remote: true
           %li.nav-link
             = link_to 'Sign out', destroy_user_session_path, method: :delete
 

@@ -8,7 +8,6 @@ end
 
 Then(/^I should see "(.*?)"$/) do |title|
   page.should have_content(title)
-  save_and_open_page
 end
 
 Given(/^I fill in the form and hit submit$/) do
