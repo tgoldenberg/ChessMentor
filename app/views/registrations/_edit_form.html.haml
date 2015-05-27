@@ -1,0 +1,56 @@
+.form-group
+  .sign-in-header
+    %h1{style: 'text-align: center;'} Edit Account
+    %i.glyphicon.glyphicon-knight{id: 'header-glyph'}
+  .devise-error-messages
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'edit_user_form', method: :put}, validate: true ) do |f|
+
+    .field.inner-addon.left-addon{style: 'margin-top: 15px;'}
+      %i.glyphicon.glyphicon-user{style: 'top: 15px; left: 7px;'}
+      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name', required: true
+
+    .field.inner-addon.left-addon
+      %i.glyphicon.glyphicon-envelope
+      = f.email_field :email, class: 'form-control', placeholder: 'Your Email', required: true, autofocus: true
+
+
+    .field.inner-addon.left-addon
+      = f.label "* leave it blank if you don't want to change it", class: 'form-label'
+      %br/
+      %i.glyphicon.glyphicon-lock
+      = f.password_field :password, autocomplete: 'off', class: 'form-control', id: 'password-first', placeholder: 'new password'
+
+    .field.inner-addon.left-addon
+      %i.glyphicon.glyphicon-repeat
+      = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: 'confirm new password'
+
+    .field.inner-addon.left-addon
+      = f.label "* we need you current password to confirm your changes", class: 'form-password-conf'
+      %br/
+      %i.glyphicon.glyphicon-lock
+      = f.password_field :current_password, class: 'form-control', placeholder: "current password", required: true
+
+    .field.inner-addon.left-addon{style: 'position: relative;'}
+      %i.glyphicon.glyphicon-briefcase
+      = f.text_field :city, class: 'form-control', placeholder: "city", id: 'city-field'
+
+
+      %i.glyphicon.glyphicon-globe
+      = f.text_field :country, class: 'form-control', placeholder: "country", id: 'country-field'
+
+    .field
+      = f.file_field :avatar, id: 'pictureInput', class: 'filestyle'
+
+    .actions{style: 'padding-left: 19px; height: 120px;'}
+      = f.submit 'Sign up', class: 'large-button'
+      #target
+        %img{src: '/assets/missing.png', width:'100'}
+
+  %h3 Cancel my account
+  %p
+    Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+  = link_to "Back", :back
+
+:javascript
+  $('#edit_user_form').validate();
