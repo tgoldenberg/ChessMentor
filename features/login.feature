@@ -9,3 +9,11 @@ Feature:
     Then I should see "Sign up"
     Given I fill in the form and hit submit
     Then I should see the home page
+
+  Scenario:
+    Given I visit the home page
+    And I am a signed up user
+    Then I should see "Sign in"
+    Given I hit the "Log in" button
+    And I fill in the sign in form and hit submit
+    Then I should see the home page
