@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   has_many :paid_charges, class_name: 'Charge', foreign_key: 'user_id', dependent: :destroy
   has_many :received_charges, class_name: 'Charge', foreign_key: 'vendor_id', dependent: :destroy
 
+  def games
+    (Game.where(player1_id: self.id) + Game.where(player2_id: self.id)).flatten   
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email            = auth.info.email

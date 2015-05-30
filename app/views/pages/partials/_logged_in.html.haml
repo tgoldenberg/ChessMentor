@@ -1,6 +1,6 @@
 -# = render 'pages/partials/header'
 
-.top-content-wrapper{data: {user: "#{current_user ? current_user.id : "none"}"}}
+.top-content-wrapper{data: {user: "#{current_user ? current_user.id : "none"}", games: "#{current_user.games.count}"}}
   .left-side-wrapper
     -# content for message to user
     .message-wrapper
@@ -9,7 +9,14 @@
           = image_tag current_user.avatar.url(:thumb), width: '104', class: 'thumb-profile'
       .greeting-wrapper
         %h2.greeting Hi, #{current_user.name}!
-        %p.greeting-content You have not played any games yet. Select a mentor to setup a game and personal instruction.
+        - if current_user.games.count == 0 && current_user.class != Mentor
+          %p.greeting-content You have not played any games yet. Select a mentor to setup a game and personal instruction.
+        - elsif current_user.games.count == 0 && current_user.class == Mentor
+          %p.greeting-content Welcome to ChessMentor. You have not played any games yet.
+        - elsif current_user.class == Mentor
+          %p.greeting-content Welcome to ChessMentor. Remember to check your inbox for any player requests!
+        - elsif current_user.class != Mentor
+          %p.greeting-content Welcome to ChessMentor. Your current score is #{current_user.user_ranking}. Request a game to improve your score! 
 
     -#  content for user profile
     .user-info-wrapper
@@ -36,16 +43,48 @@
           %i.glyphicon.glyphicon-tower
           %p My Games
           %div{style: 'clear: both;'}
+
         .games-holder
-          .board{id: 'board'}
-          .board{id: 'board2'}
-          .board{id: 'board3'}
+          - if current_user.games.count >= 3
+            - current_user.games.last(3).each_with_index do |game, idx|
+              .board{id: "board#{idx}", data: {game_id: "#{game.id}"}}
+              :javascript
+                var cfg = {
+                    pieceTheme: '/assets/{piece}.png',
+                    showNotation: false,
+                    position: 'start'
+                    };
+                cfg.position = "#{game.moves.last.piece}";
+                var board = new ChessBoard("board#{idx}", cfg);
+          - else
+            .board{id: "board0"}
+            .board{id: "board1"}
+            .board{id: "board2"}
+              :javascript
+                var cfg = {
+                    pieceTheme: '/assets/{piece}.png',
+                    showNotation: false,
+                    position: 'start'
+                  };
+
+                cfg.position = 'rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R'
+                var board0 = new ChessBoard('board0', cfg);
+                cfg.position = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR'
+                var board1 = new ChessBoard('board1', cfg);
+                cfg.position = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R';
+                var board2 = new ChessBoard('board2', cfg);
+
+
+
           %div{style: 'clear: both;'}
         .games-description
           .top-row
-          %p{style: 'padding-left: 39px;'} vs. Vlad P
-          %p{style: 'padding-left: 45px;'} vs. Arnold
-          %p{style: 'padding-left: 54px;'} vs. BobbyD
+          - if current_user.games.count > 0
+            - current_user.games.last(3).each_with_index do |game, idx|
+              %p vs. #{current_user.id == game.player1_id ? User.find(game.player2_id).name : User.find(game.player1_id).name }
+          - else
+            %p.no-games-yet You do not have any games yet. Request a game with one of our mentors!
+
 
   .right-side-wrapper
     - if current_user.class == Mentor

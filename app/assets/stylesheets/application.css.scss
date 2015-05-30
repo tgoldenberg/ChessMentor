@@ -51,6 +51,9 @@ a, a:hover {
   text-decoration: none;
 }
 
+li {
+  list-style-type: none;
+}
 a, p {
   font-family: $secondary-font;
 }

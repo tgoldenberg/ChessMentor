@@ -128,4 +128,17 @@
     font-weight: 400;
     color: #555;
   }
+  li {
+    text-align: center;
+    .stripe-connect {
+      @include button(flat, $action-color);
+      font-weight: 300;
+      text-align: center;
+      margin-top: 13px;
+      margin-right: 35px;
+      a {
+        /* text-align: center; */
+      }
+    }
+  }
 }

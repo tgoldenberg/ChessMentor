@@ -39,11 +39,16 @@
       %i.glyphicon.glyphicon-globe
       = f.text_field :country, class: 'form-control', placeholder: "country", id: 'country-field'
 
+      - if current_user.class == Mentor
+        %li
+          = link_to 'Connect with Stripe to accept payments', user_omniauth_authorize_path(:stripe_connect), class: 'stripe-connect'
+
     .field
       = f.file_field :avatar, id: 'pictureInput', class: 'filestyle'
 
+
     .actions{style: 'padding-left: 19px; height: 120px;'}
-      = f.submit 'Sign up', class: 'large-button'
+      = f.submit 'Edit Account', class: 'large-button'
       #target
         %img{src: '/assets/missing.png', width:'100'}
 
