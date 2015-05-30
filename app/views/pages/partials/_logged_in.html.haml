@@ -27,15 +27,15 @@
           %div{style: 'clear: both;'}
         %table.tables
           %tbody
-            %tr
+            %tr.edit-profile-link{onmouseover:"", style: 'cursor: pointer;'}
               %td.grey-highlight #{current_user.name}
-            %tr
+            %tr.edit-profile-link{onmouseover:"", style: 'cursor: pointer;'}
               %td.grey-highlight City: #{current_user.city}
-            %tr
+            %tr.edit-profile-link{onmouseover:"", style: 'cursor: pointer;'}
               %td.grey-highlight Country: #{current_user.country}
-            %tr
+            %tr.edit-profile-link{onmouseover:"", style: 'cursor: pointer;'}
               %td.grey-highlight Ranking: #{current_user.official_ranking}
-            %tr
+            %tr.edit-profile-link{onmouseover:"", style: 'cursor: pointer;'}
               %td.grey-highlight Games played:
 
       .games-wrapper
@@ -96,40 +96,12 @@
 %h2{id: 'mentor-header', style: 'text-align: center;'} Mentors
 .mentor-carousel-wrapper
   .gallery.items-3.autoplay
-    .control-operator{id: 'item-1'}
-    .control-operator{id: 'item-2'}
-    .control-operator{id: 'item-3'}
-
-
-    %figure.item
-      - @mentors.first(4).each do |mentor|
-        .mentor-wrapper
-          <a data-remote="true" data-id="#{mentor.id}" href="#"><h2> #{mentor.name}</h2></a>
-          %p.border-bottom Ranking: #{mentor.official_ranking}
-          %p Cost per class: #{number_to_currency(mentor.price)}
-          = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
-
-    %figure.item
-      - @mentors.first(8).last(4).each do |mentor|
-        .mentor-wrapper{style: 'padding-bottom: 15px;'}
-          <a data-remote="true" data-id="#{mentor.id}"  href='#'><h2> #{mentor.name}</h2></a>
-          %p.border-bottom Ranking: #{mentor.official_ranking}
-          %p Cost per class: #{number_to_currency(mentor.price)}
-          = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
-
-    %figure.item
-      - @mentors.last(4).each do |mentor|
-        .mentor-wrapper{style: 'padding-bottom: 15px;'}
-          <a data-remote="true" data-id="#{mentor.id}" href="#"><h2> #{mentor.name}</h2></a>
-          %p.border-bottom Ranking: #{mentor.official_ranking}
-          %p Cost per class: #{number_to_currency(mentor.price)}
-          = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
-
-    .controls
-      %a.control-button{href: '#item-1'}
-      %a.control-button{href: '#item-2'}
-      %a.control-button{href: '#item-3'}
-
+    - @mentors.each do |mentor|
+      .mentor-wrapper{style: 'padding-bottom: 15px;'}
+        <a data-remote="true" data-id="#{mentor.id}" href="#"><h2> #{mentor.name}</h2></a>
+        %p.border-bottom Ranking: #{mentor.official_ranking}
+        %p Cost per class: #{number_to_currency(mentor.price)}
+        = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
 %footer.footer{role: 'contentinfo'}
   %br

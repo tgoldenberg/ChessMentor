@@ -6,7 +6,15 @@ window.App.controllers.pages.home = function() {
     if (gameId != undefined) {
       window.location = "/games/" + gameId;
     }
-  }
+  };
+
+  var openAccountInfo = function() {
+    currentUser = $('.top-content-wrapper').data('user');
+    $.ajax({
+      type: 'GET',
+      url: '/users/edit'
+    });
+  };
 
   var dropdownShow = function() {
     $(".dropdown-menu").toggleClass("show-menu");
@@ -18,7 +26,9 @@ window.App.controllers.pages.home = function() {
     });
   };
 
+
+
   $('.dropdown-button').click(dropdownShow);
   $('.board').on('click', openGame);
-
+  $('.edit-profile-link').on('click', openAccountInfo);
 }

@@ -171,6 +171,7 @@
             text-align: center;
             margin-left: 10px;
             width: 20%;
+            min-width: 86px;  
           }
           p.no-games-yet {
             font-weight: 300;
@@ -311,8 +312,10 @@
   color: #999;
 }
 .mentor-carousel-wrapper {
-  height: 300px;
-  background: grey;
+  height: 367px;
+  background: #e6e6e6;
+  overflow-x: auto;
+  overflow-y: hidden;
   .gallery .item {
     @include span-columns(12);
     min-width: 1296px;
@@ -372,7 +375,6 @@
   background: $footer-background;
   padding: ($base-spacing * 2) $gutter;
   width: 100%;
-  margin-top:15px;
 
   .footer-logo {
     margin-bottom: 2em;
