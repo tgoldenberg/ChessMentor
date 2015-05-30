@@ -16,7 +16,7 @@
         - elsif current_user.class == Mentor
           %p.greeting-content Welcome to ChessMentor. Remember to check your inbox for any player requests!
         - elsif current_user.class != Mentor
-          %p.greeting-content Welcome to ChessMentor. Your current score is #{current_user.user_ranking}. Request a game to improve your score! 
+          %p.greeting-content Welcome to ChessMentor. Your current score is #{current_user.user_ranking}. Request a game to improve your score!
 
     -#  content for user profile
     .user-info-wrapper
@@ -47,7 +47,7 @@
         .games-holder
           - if current_user.games.count >= 3
             - current_user.games.last(3).each_with_index do |game, idx|
-              .board{id: "board#{idx}", data: {game_id: "#{game.id}"}}
+              .board{id: "board#{idx}", data: {game_id: "#{game.id}"}, onmouseover:"", style: 'cursor: pointer;'}
               :javascript
                 var cfg = {
                     pieceTheme: '/assets/{piece}.png',
@@ -81,7 +81,7 @@
           .top-row
           - if current_user.games.count > 0
             - current_user.games.last(3).each_with_index do |game, idx|
-              %p vs. #{current_user.id == game.player1_id ? User.find(game.player2_id).name : User.find(game.player1_id).name }
+              %p vs. #{current_user.id == game.player1_id ? User.where(id: game.player2_id).size != 0  ? User.find(game.player2_id).name : nil : User.where(id: game.player1_id).size != 0  ? User.find(game.player1_id).name : nil }
           - else
             %p.no-games-yet You do not have any games yet. Request a game with one of our mentors!
 
