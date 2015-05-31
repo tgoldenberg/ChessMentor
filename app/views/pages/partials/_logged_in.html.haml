@@ -38,6 +38,7 @@
             %tr.edit-profile-link{onmouseover:"", style: 'cursor: pointer;'}
               %td.grey-highlight Games played:
 
+      -# Recent games by mentor/learner
       .games-wrapper
         .games-header
           %i.glyphicon.glyphicon-tower
@@ -73,10 +74,8 @@
                 var board1 = new ChessBoard('board1', cfg);
                 cfg.position = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R';
                 var board2 = new ChessBoard('board2', cfg);
-
-
-
           %div{style: 'clear: both;'}
+
         .games-description
           .top-row
           - if current_user.games.count > 0
@@ -85,14 +84,14 @@
           - else
             %p.no-games-yet You do not have any games yet. Request a game with one of our mentors!
 
-
+  -# Search bar for mentors/learner
   .right-side-wrapper
     - if current_user.class == Mentor
       = render 'pages/partials/user_search'
     - else
       = render 'pages/partials/mentor_search'
 
-
+-# Gallery of mentors
 %h2{id: 'mentor-header', style: 'text-align: center;'} Mentors
 .mentor-carousel-wrapper
   .gallery.items-3.autoplay
@@ -103,36 +102,4 @@
         %p Cost per class: #{number_to_currency(mentor.price)}
         = link_to image_tag(mentor.avatar.url(:medium)), '#', remote: true
 
-%footer.footer{role: 'contentinfo'}
-  %br
-  %br
-  .footer-links
-    %ul
-      %li
-        %h3 Content
-      %li
-        %a{href:'#'} About
-      %li
-        %a{href:'#'} Contact
-      %li
-        %a{href:'#'} Testimonials
-    %ul
-      %li
-        %h3 Follow Us
-      %li
-        %a{href:'#'} Facebook
-      %li
-        %a{href:'#'} Twitter
-      %li
-        %a{href:'#'} YouTube
-
-    %ul
-      %li
-        %h3 Legal
-      %li
-        %a{href: '#'} Terms and Conditions
-      %li
-        %a{href: '#'} Privacy Policy
-  %hr
-
-  %p Disclaimer area lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, nostrum repudiandae saepe.
+= render 'pages/partials/footer'
