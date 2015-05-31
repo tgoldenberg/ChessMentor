@@ -14,5 +14,8 @@ $(function() {
     case "sessions_new" :
       App.controllers.sessions.new();
       break;
+    case "conversations_show" :
+      App.controllers.conversations.show();
+      break;
   }
 });

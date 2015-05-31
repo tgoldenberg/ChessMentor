@@ -21,7 +21,7 @@
 
   - if current_user.class != Mentor
     .button-wrapper
-      = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
+      = link_to 'Message', new_conversation_path(sender_id: current_user.id, recipient_id: @mentor.id), remote: true, class: 'button', id: 'message-button'
       = link_to 'Request Instruction', new_request_path(recipient_id: @mentor.id), class: 'button small-font'
 
     .form-wrapper{style: 'margin-top: 130px;'}

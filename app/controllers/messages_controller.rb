@@ -2,6 +2,10 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
 
+  def show
+    @conversation = Conversation.find(params[:conversation_id])
+    @message = @conversation.messages.find(params[:id])
+  end
   def new
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.build
@@ -20,6 +24,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :sender_id, :recipient_id, :conversation_id, :avatar_url, :created_time)
+    params.require(:message).permit(:body, :sender_id, :recipient_id, :conversation_id, :avatar_url)
   end
 end
