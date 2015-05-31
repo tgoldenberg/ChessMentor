@@ -1,0 +1,52 @@
+.conversation-wrapper
+  .left-side-wrapper
+    .current-conversation-header
+      .top-wrapper
+        .photo-wrapper
+          .round-photo-wrapper
+            = image_tag @other_person.avatar.url(:thumb), width: '104', class: 'thumb-profile'
+        .greeting-wrapper
+          %h2 #{@other_person.name}
+          %p #{@other_person.city}
+    .current-conversation-content
+      .current-messages-header
+        %span.glyphicon.glyphicon-envelope
+        %p Messages
+        %div{style: 'clear:both;'}
+      .current-messages-content
+        - @messages.each do |msg|
+          .message-inner-content
+            = image_tag msg.sender.avatar.url(:thumb), class: 'message-sender-profile'
+            %p.message-body #{msg.body}
+          %p.creation-time #{time_ago_in_words(msg.created_at) unless msg.created_at.blank? }
+
+    .new-message-field
+      = simple_form_for [@conversation, @message], remote: true do |f|
+        .field
+          = f.text_area :body, placeholder: 'type your message here', autofocus: true
+        .field
+          = f.hidden_field :sender_id, :value => current_user.id
+        .field
+          = f.hidden_field :recipient_id, :value => @other_person.id
+        .actions
+          = f.submit 'Send', class: 'large-button button message-button'
+
+  .right-column-wrapper
+    .filler-space
+    .recent-conversation-header
+      %span.glyphicon.glyphicon-pawn
+      %p My Recent Conversations
+    .recent-conversation-holder
+      %table.tables
+        %tbody.conversation-table
+          - current_user.conversations.each do |conversation|
+            %tr{onmouseover:"", style: 'cursor: pointer;'}
+              - if current_user == conversation.sender
+
+                %td #{conversation.recipient.name}
+                %td{style: "padding:0;"}
+                  = image_tag conversation.recipient.avatar.url(:thumb), width: 40
+              - else
+                %td{style: "padding:0;"}
+                  = image_tag conversation.sender.avatar.url(:thumb)
+                %td #{conversation.sender.name}
