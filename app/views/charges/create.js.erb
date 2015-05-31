@@ -1,1 +1,6 @@
-console.log("HIIII");
+console.log("CHARGE COMPLETE");
+$('.payment-instructions').toggle();
+$('.payment-completed').toggle();
+$('body').removeClass('modal-open');
+$('.modal-fade-screen').css('visibility', 'hidden');
+$('#stripe-boolean').val("true");

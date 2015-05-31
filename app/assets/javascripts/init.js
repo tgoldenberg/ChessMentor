@@ -3,6 +3,7 @@ window.App = {
     requests: {},
     pages: {},
     registrations: {},
-    sessions: {}
+    sessions: {},
+    conversations: {}
   }
 }

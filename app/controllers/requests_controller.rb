@@ -1,24 +1,20 @@
 class RequestsController < ApplicationController
   respond_to :html, :js
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:edit, :update, :destroy]
 
   def index
     @requests = Request.all
   end
 
   def show
+    @request = Request.find(params[:id])
+    @request.update_attribute(:seen, true)
   end
 
   def new
     @request = Request.new
     @request.recipient_id = params[:recipient_id]
-    if Charge.where(vendor_id: @request.recipient_id, user_id: current_user.id).count > 0
-      @charge = Charge.where(vendor_id: @request.recipient_id, user_id: current_user.id).last
-    else
-      @charge = Charge.new
-    end
-
-
+    @charge = Charge.new
   end
 
   def edit

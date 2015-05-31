@@ -1,3 +1,4 @@
 $('#message_body').val('');
-$('.message-inner-content-holder').append("<%= escape_javascript(render 'message') %>");
-$('.message-inner-content-holder').scrollTop($('.message-inner-content-holder').prop('scrollHeight') - 130);
+$('.current-messages-content').append("<%= escape_javascript(render 'new_message') %>")
+$('.current-messages-content').scrollTop($('.current-messages-content').prop('scrollHeight') - 230);
+$('.notice').append('Message successfully sent').delay(2000).fadeOut('slow');

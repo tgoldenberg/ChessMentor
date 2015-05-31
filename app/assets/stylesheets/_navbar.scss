@@ -105,8 +105,12 @@ header.navigation {
        color: #999;
      }
 
+     .glyphicon-envelope.color-change, .glyphicon-globe.color-change {
+       color: $action-color;
+     }
+
      .glyphicon-globe {
-       margin-right: -50px;
+       margin-right: 5px;
      }
 
      .glyphicon-envelope {

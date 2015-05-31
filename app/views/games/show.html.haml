@@ -4,31 +4,31 @@
       .player-profile{id: 'player1-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
-          %p #{@game.player1.name}
+          %p #{@game.try(:player1).try(:name)}
           %span.glyphicon.glyphicon-minus
         %table.tables.player-content
           %tbody
             %tr
-              %td.grey-highlight Ranking: #{@game.player1.official_ranking}
+              %td.grey-highlight Ranking: #{@game.try(:player1).try(:official_ranking)}
             %tr
-              %td.grey-highlight City: #{@game.player1.city}
+              %td.grey-highlight City: #{@game.try(:player1).try(:city)}
             %tr
-              %td.grey-highlight Country #{@game.player1.country}
+              %td.grey-highlight Country #{@game.try(:player1).try(:country)}
         .time-wrapper{id: 'time0'}
       %br/
       .player-profile.animated{id: 'player2-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
-          %p #{@game.player2.name}
+          %p #{@game.try(:player2).try(:name)}
           %span.glyphicon.glyphicon-minus
         %table.tables.player-content
           %tbody
             %tr
-              %td.grey-highlight Ranking: #{@game.player2.official_ranking}
+              %td.grey-highlight Ranking: #{@game.try(:player2).try(:official_ranking)}
             %tr
-              %td.grey-highlight City: #{@game.player2.city}
+              %td.grey-highlight City: #{@game.try(:player2).try(:city)}
             %tr
-              %td.grey-highlight Country: #{@game.player2.country}
+              %td.grey-highlight Country: #{@game.try(:player2).try(:country)}
 
         .time-wrapper{id: 'time1'}
 

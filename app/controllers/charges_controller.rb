@@ -7,15 +7,15 @@ class ChargesController < ApplicationController
      :card => params[:stripeToken]
    )
    @charge = Charge.new(
-   price: params[:charge]["price"].to_i,
+   price: params[:charge][:price].to_i,
    user_id: current_user.id,
-   vendor_id: params[:charge]["vendor_id"].to_i,
-   description: params[:charge]["description"],
-   token: params[:stripeToken],
+   vendor_id: params[:charge][:vendor_id].to_i,
+   description: params[:charge][:description],
+   token: params[:charge][:stripeToken],
    customer_id: customer.id
    )
-   @charge.save
-   redirect_to :back
+   if @charge.save
+   end
  end
 
  def update

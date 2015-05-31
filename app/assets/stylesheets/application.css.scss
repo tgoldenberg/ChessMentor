@@ -19,6 +19,7 @@
 @import 'invitations';
 @import 'games';
 @import 'animate';
+@import 'conversations';
 
 //= require jcrop
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
@@ -71,4 +72,7 @@ body {
   padding: 0;
   height: 100vh;
   background: #f7f7f7;
+}
+.button-submit {
+  @include button(flat, $dark-green);
 }
