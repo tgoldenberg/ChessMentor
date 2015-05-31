@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
     @other_person = @conversation.sender_id == current_user.id ? @conversation.recipient : @conversation.sender
-    @messages = @conversation.messages.all.order("created_at ASC").first(20)
+    @messages = @conversation.messages.all.order("created_at ASC").last(20)
     @conversation.messages.where(:recipient_id => current_user.id).each do |msg|
       msg.read = true
       msg.save

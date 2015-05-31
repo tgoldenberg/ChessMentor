@@ -73,8 +73,35 @@
   .button {
     @include button(shiny, $action-color);
   }
+  .stripe-form-wrapper {
+    text-align: center;
+    padding:20px;
+
+    input.stripe {
+      height: 40px;
+      text-align: center;
+      width: 300px;
+      font-size: 21px;
+    }
+    input.stripe.half {
+      width: 100px;
+    }
+    input.stripe.checkbox {
+      width: 15px;
+      text-align: left;
+      height: 15px;
+    }
+
+    .stripe-button {
+      @include button(flat, $action-color);
+    }
+  }
+
   .submit-button {
     visibility: hidden;
+  }
+  .credit-button {
+    @include button(flat, $action-color);
   }
   .button-stripe {
     @include button(shiny, $action-color);
@@ -117,6 +144,7 @@
   padding: 20px;
   font-size: 1.2em;
   font-weight: bold;
+  display: none;
 }
 
 // animate.css for ok-circle glyphicon

@@ -43,13 +43,12 @@
       console.log(data.from)
       console.log(data.create_time)
       console.log(data.avatar_url)
-      var addOn = "<div class='message-inner-content'><img src=" + data.avatar_url + "class='message-sender-profile' style='width: 50px; height: 50px;'>";
-      addOn += "<p class='message-body'> " + data.message + "</p></div>";
-      $('.message-inner-content-holder').append(addOn);
-      $('.message-inner-content-holder').scrollTop($('.message-inner-content-holder').prop('scrollHeight') - 130);
 
       $('.glyphicon-envelope').css('color', '#78baa1');
-      $('.glyphicon-envelope').addClass('pulse');
+      $('.glyphicon-envelope').addClass('color-change');
+      $('.received-messages').append('<li><a href="/conversations/' +
+      data.conversation_id + '" class="user-link" style="font-size: 14px; text-align:center;"> New Message from ' +
+      data.from + '</a></li>');
     });
 
 

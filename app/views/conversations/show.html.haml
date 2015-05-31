@@ -41,12 +41,12 @@
         %tbody.conversation-table
           - current_user.conversations.each do |conversation|
             %tr{onmouseover:"", style: 'cursor: pointer;'}
-              - if current_user == conversation.sender
+              - if current_user == conversation.sender && conversation.recipient
 
-                %td #{conversation.recipient.name}
+                %td #{conversation.try(:recipient).try(:name)}
                 %td{style: "padding:0;"}
                   = image_tag conversation.recipient.avatar.url(:thumb), width: 40
-              - else
+              - elsif current_user == conversation.recipient && conversation.sender
                 %td{style: "padding:0;"}
                   = image_tag conversation.sender.avatar.url(:thumb)
                 %td #{conversation.sender.name}
