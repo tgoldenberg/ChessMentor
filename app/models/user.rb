@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :received_charges, class_name: 'Charge', foreign_key: 'vendor_id', dependent: :destroy
 
   def games
-    (Game.where(player1_id: self.id) + Game.where(player2_id: self.id)).flatten   
+    (Game.where(player1_id: self.id) + Game.where(player2_id: self.id)).flatten
   end
 
   def self.from_omniauth(auth)
@@ -40,6 +40,19 @@ class User < ActiveRecord::Base
       user.city             = auth.extra.raw_info.locale.split('_')[1]
       user.country          = auth.info.location
     end
+  end
+
+  def unread_messages
+    senders = self.received_messages.map {|msg| msg.sender_id }
+    senders = senders.uniq
+    senders.map {|id| self.received_messages.where(sender_id: id).last if self.received_messages.where(sender_id: id).last.sender != nil }.compact
+  end
+
+  def unread_requests
+    senders = self.received_requests.map {|msg| msg.sender_id }
+    senders = senders.uniq
+    senders
+    senders.map {|id| self.received_requests.where(sender_id: id).last if self.received_requests.where(sender_id: id).last.sender != nil }.compact
   end
 
   def self.process_uri(uri)

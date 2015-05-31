@@ -1,24 +1,15 @@
 .field{style: 'text-align: center;'}
-  - if @charge
+  .payment-instructions
     %p
       To process your request we need to save your <em>payment information</em>. Click below to save your information with our secure payment gateway, <b>Stripe</b>.
     %p
       You will not be charged until after the instruction, and can cancel at <b>any</b> time.
 
-
-    = simple_form_for @charge do |f|
-      = f.hidden_field :price, value: @request.recipient.price
-      = f.hidden_field :description, value: @request.recipient.name
-      = f.hidden_field :owner_id, value: @request.recipient.id
-      = f.hidden_field :vendor_id, value: params[:recipient_id]
-      = f.hidden_field :token
-      = f.hidden_field :customer_id
-
-      %script{src:"https://checkout.stripe.com/checkout.js", class:"stripe-button", data: {key: ENV["stripe_publishable_key"], price:"#{@request.recipient.price*100}", name:"ChessMentor", vendor_id: "#{@request.recipient.id}", description: "#{number_to_currency(@request.recipient.price)}", image: "/assets/landing_background.png"}}
+    %button.credit-button Pay with card
 
     %span.glyphicon.glyphicon-check.red Pending
 
-  - else
+  .payment-completed{style: 'display: none;'}
     %br/
     %p Your payment information was saved successfully. Fill out the form below and submit a request!
     %span.glyphicon.glyphicon-check.green{style: 'color:green; font-size: 1.5em;'} OK!
@@ -107,7 +98,28 @@
     = f.hidden_field :stripe
   .field
     = f.hidden_field :time, id: 'time-field'
+  .field
+    = f.hidden_field :stripe, id: 'stripe-boolean'
   .actions
     = f.submit 'Save', class: 'button'
 
-%script{src:"https://checkout.stripe.com/checkout.js", class:"stripe-button", data: {key: ENV["stripe_publishable_key"], price:"#{@request.recipient.price*100}", name:"ChessMentor", vendor_id: "#{@request.recipient.id}", description: "#{number_to_currency(@request.recipient.price)}", image: "/assets/landing_background.png"}}
+.modal-fade-screen
+  .modal-inner
+    .modal-close{for: 'modal-1'}
+    .modal-content
+
+  :javascript
+    console.log("REQUESTS NEW");
+    $('.credit-button').on('click', function(e) {
+      e.preventDefault();
+      $('body').addClass("modal-open");
+      $('.modal-content').html("#{ escape_javascript(render 'stripe_form') }");
+      $('.modal-fade-screen').css({ 'opacity':1, 'visibility':'visible'});
+      $('.modal-fade-screen, .modal-close').on('click', function() {
+        $('body').removeClass('modal-open');
+        $('.modal-fade-screen').css('visibility', 'hidden');
+      });
+      $('.modal-inner').on('click', function(e) {
+        e.stopPropagation();
+      });
+    });

@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     @conversation = Conversation.new
     if current_user
       @messages = current_user.received_messages.where(:read => false).select('DISTINCT sender_id')
+      @requests = current_user.received_requests.order("created_at DESC").first(5)
     end
   end
 

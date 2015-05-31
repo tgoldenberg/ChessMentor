@@ -17,40 +17,30 @@
         %p Country: #{@mentor.country}
       %th
         %p #{number_to_currency(@mentor.price)} / class
+
+
   - if current_user.class != Mentor
-    - if @conversation.messages.count < 1
-      .button-wrapper
-        = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
-        = link_to 'Request Instruction', new_request_path(recipient_id: @mentor.id), class: 'button small-font'
+    .button-wrapper
+      = link_to 'Message', new_conversation_path(sender_id: current_user.id, recipient_id: @mentor.id), remote: true, class: 'button', id: 'message-button'
+      = link_to 'Request Instruction', new_request_path(recipient_id: @mentor.id), class: 'button small-font'
 
-      .form-wrapper{style: 'margin-top: 130px;'}
-    - else
-      .button-wrapper
-        = link_to 'Request Instruction', new_request_path(recipient_id: @mentor.id), class: 'button small-font', style: 'font-size: 1.2em; padding: 19px 15px; left: 101px; top: 188px; position: absolute; letter-spacing: 1.2px;'
+    .form-wrapper{style: 'margin-top: 130px;'}
 
-      .form-wrapper{style: 'margin-top: 150px;'}
-        = render 'hidden_form'
   - else
     .button-wrapper
-      = link_to 'Message', "#", remote: true, class: 'button', id: 'message-button'
+      = link_to 'Message', new_conversation_path(sender_id: current_user.id, recipient_id: @mentor.id), remote: true, class: 'button', id: 'message-button'
       = link_to 'Create Game', new_invitation_path(sender_id: current_user.id, recipient_id: @mentor.id), remote: true, class: 'button small-font invitation-button'
 
     .form-wrapper{style: 'margin-top: 130px;'}
 
 :javascript
   $(function() {
-    $('#message-button').click(function() {
-      $('.form-wrapper').html("#{escape_javascript(render 'form')} ");
-    });
     $('.invitation-button').click(function(e) {
       e.preventDefault();
       $.ajax({
         url: '/invitations',
         type: 'POST',
-        data: {sender_id: #{current_user.id}, recipient_id: #{@mentor.id}},
-        success: function(data) {
-          console.log("Invitation request");
-        }
+        data: {sender_id: #{current_user.id}, recipient_id: #{@mentor.id}}
       });
     });
   });

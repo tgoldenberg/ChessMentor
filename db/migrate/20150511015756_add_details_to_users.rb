@@ -6,7 +6,7 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :city, :string
     add_column :users, :country, :string
     add_column :users, :official_ranking, :integer
-    add_column :users, :user_ranking, :integer
+    add_column :users, :user_ranking, :integer, default: 0
     add_column :users, :price, :integer
     add_column :users, :provider, :string
     add_column :users, :uid, :string

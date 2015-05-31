@@ -1,0 +1,73 @@
+.stripe-form-wrapper{data: {vendor: "#{@request.recipient.id}", owner: "#{current_user.id}", description: "chess lesson", price: "#{@request.recipient.price}"}}
+
+  %h1 Checkout
+
+  %form{action: "/charges", method: "POST", id:"payment-form", data: {remote: "true"}}
+    %input{type: "hidden", name: "charge[token]", id: "charge_token"}
+    %input{type: "hidden", name: "charge[vendor_id]", id: "charge_vendor_id"}
+    %input{type: "hidden", name: "charge[owner_id]", id: "charge_owner_id"}
+    %input{type: "hidden", name: "charge[description]", id: "charge_description"}
+    %input{type: "hidden", name: "charge[price]", id: "charge_price"}
+    %input{type: "hidden", name: "charge[stripeToken]", id: "charge_stripe_token"}
+    %input{type: "hidden", name: "authenticity_token"}
+    %input{type: "hidden", name: "request_id", id: "charge_request_id"}
+    %input.stripe{placeholder: 'email', data: {stripe: "email"}}
+    %input.stripe{placeholder: 'card number', data: {stripe: "number"}}
+    %br/
+    %input.stripe.half{placeholder: "MM", data: {stripe: "exp-month"}}
+    %input.stripe.half{placeholder: 'YYYY', data: {stripe: "exp-year"}}
+    %input.stripe.half{placeholder: 'CVC', data: {stripe: "cvc"}}
+    %br/
+    %input.stripe.checkbox{type: 'checkbox'} Remember me
+    %br/
+    %br/
+    %button.stripe-button{type: "submit"} Pay
+
+%script{src: "https://js.stripe.com/v2/"}
+:javascript
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('pk_test_KsAQrtsMc3HmGxfz44TQkTdn');
+
+  $(function() {
+
+    $('#payment-form').submit(function(event) {
+      event.preventDefault();
+      var $form = $(this);
+      $form.find('button').prop('disabled', true);
+
+      Stripe.card.createToken($form, stripeResponseHandler);
+      return false;
+    })
+  });
+
+  function stripeResponseHandler(status, response) {
+    var $form = $('#payment-form');
+    if (response.error) {
+      // Show the errors on the form
+      $form.find('.payment-errors').text(response.error.message);
+      $form.find('button').prop('disabled', false);
+    } else {
+      // response contains id and card, which contains additional card details
+      var token = response.id;
+      // insert token into the form so it get submitted to the server
+      $('#charge_stripe_token').val(token);
+      $('#charge_price').val($('.stripe-form-wrapper').data('price'));
+      $('#charge_description').val($('.stripe-form-wrapper').data('description'));
+      $('#charge_vendor_id').val($('.stripe-form-wrapper').data('vendor'));
+      // and submit
+      console.log("CHARGE CREATE");
+      var price = $('.stripe-form-wrapper').data('price');
+      var description = $('.stripe-form-wrapper').data('description');
+      var vendor = $('.stripe-form-wrapper').data('vendor');
+      var request = $('.stripe-form-wrapper').data('request');
+      $.ajax({
+        'type':'POST',
+        'url':'/charges/',
+        'data': {'charge[stripeToken]': token, 'charge[price]': price, 'charge[vendor]': vendor, 'charge[description]': description},
+        success: function(e) {
+          e.preventDefault();
+          console.log(e);
+        }
+      });
+    }
+  }
