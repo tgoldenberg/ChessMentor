@@ -1,0 +1,39 @@
+.mentor-show-wrapper.request-wrapper{data:{id: '#{current_user.id}'}}
+  .top-wrapper
+    .photo-wrapper
+      .round-photo-wrapper
+        = image_tag @request.sender.avatar.url(:thumb), width: '104', class: 'thumb-profile'
+    .greeting-wrapper
+      %h2 #{@request.sender.name}
+      %p #{@request.sender.city}
+    .mentor-info-wrapper
+      %th
+        %p User ranking: #{@request.sender.user_ranking}
+      %th
+        %p City: #{@request.sender.city}
+      %th
+        %p Country: #{@request.sender.country}
+  %br/
+  %hr
+  .game-notification
+    %h2 Game Request!
+    %p You have been requested for a mentoring session with #{@request.sender.name}
+    %p Here are the times that #{@request.sender.name} is available:
+    %table.tables
+      %tbody
+        - @times.in_groups_of(3).each do |time|
+          %tr
+            - time.each do |t|
+              %th #{t}
+
+:javascript
+  $(function() {
+    $('.invitation-button').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '/invitations',
+        type: 'POST',
+        data: {sender_id: #{current_user.id}, recipient_id: #{@request.sender.id}}
+      });
+    });
+  });

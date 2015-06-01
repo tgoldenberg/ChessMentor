@@ -140,6 +140,26 @@
     }
   }
 }
+.request-wrapper {
+  .mentor-info-wrapper {
+    float: right;
+    background: #e4e4e4;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-radius: 3px;
+    margin-left: 40px;
+    height: 128px;
+    p {
+      margin-top: -4px;
+    }
+  }
+  .request-message {
+    height: 200px;
+  }
+  .game-notification {
+    padding-top: 5px;
+  }
+}
 .back-button {
   padding: 20px;
   font-size: 1.2em;

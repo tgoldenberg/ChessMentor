@@ -108,7 +108,10 @@
     .modal-close{for: 'modal-1'}
     .modal-content
 
-  :javascript
+%script{src: "https://js.stripe.com/v2/"}
+
+:javascript
+  $(function() {
     console.log("REQUESTS NEW");
     $('.credit-button').on('click', function(e) {
       e.preventDefault();
@@ -123,3 +126,4 @@
         e.stopPropagation();
       });
     });
+  });

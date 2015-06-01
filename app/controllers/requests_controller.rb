@@ -9,6 +9,7 @@ class RequestsController < ApplicationController
   def show
     @request = Request.find(params[:id])
     @request.update_attribute(:seen, true)
+    @times = @request.time.strip.split(" - ").map {|x| x[-1] == "-" ? x[0..-3] : x }
   end
 
   def new

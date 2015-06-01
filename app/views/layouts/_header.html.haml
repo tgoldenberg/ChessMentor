@@ -1,36 +1,36 @@
+- if current_user
+  %header.navigation{role: 'banner'}
+    .navigation-wrapper{data: {messages: "#{current_user ? current_user.received_messages.where(:read => false).select('DISTINCT sender_id').count : nil}", requests: "#{current_user ? current_user.received_requests.where(:seen => false, :stripe => "true").size : nil}"}}
 
-%header.navigation{role: 'banner'}
-  .navigation-wrapper{data: {messages: "#{current_user.received_messages.where(:read => false).select('DISTINCT sender_id').count}", requests: "#{current_user.received_requests.where(:seen => false, :stripe => "true").size}"}}
+      %nav{role: 'navigation'}
+        %ul.navigation-menu.show{id: 'js-navigation-menu'}
+          %li.nav-link
+            = link_to 'Home', root_path
+          %p.notice{style: 'display: inline-block;'} #{notice}
 
-    %nav{role: 'navigation'}
-      %ul.navigation-menu.show{id: 'js-navigation-menu'}
-        %li.nav-link
-          = link_to 'Home', root_path
-        %p.notice{style: 'display: inline-block;'} #{notice}
+      .navigation-tools
+        %ul.navigation-menu.show{id: 'js-navigation-menu'}
+          %li.nav-link.dropdown
+            %span.glyphicon.glyphicon-envelope{onmouseover: "", style: "cursor: pointer;"}
+              - if current_user && current_user.unread_messages.any?
+                %ul.dropdown-menu.dropdown-select.received-messages
+                  - current_user.unread_messages.each do |msg|
+                    - if msg.id
+                      %li
+                        <a href='/conversations/#{msg.conversation.id}' class="user-link" style="font-size:14px; text-align:center;">New Message from #{msg.try(:sender).try(:name)}</a>
 
-    .navigation-tools
-      %ul.navigation-menu.show{id: 'js-navigation-menu'}
-        %li.nav-link.dropdown
-          %span.glyphicon.glyphicon-envelope{onmouseover: "", style: "cursor: pointer;"}
-            - if current_user.unread_messages.any?
-              %ul.dropdown-menu.dropdown-select.received-messages
-                - current_user.unread_messages.each do |msg|
-                  - if msg.id
-                    %li
-                      <a href='/conversations/#{msg.conversation.id}' class="user-link" style="font-size:14px; text-align:center;">New Message from #{msg.try(:sender).try(:name)}</a>
-
-        %li.nav-link.dropdown
-          %span.glyphicon.glyphicon-globe{onmouseover: "", style: "cursor: pointer;"}
-            - if current_user.unread_requests.any?
-              %ul.dropdown-menu.dropdown-select.received-requests
-                - current_user.unread_requests.each do |request|
-                  - if request.id
-                    %li
-                      <a href="/requests/#{request.id}" class="user-link" style="font-size:14px; text-align:center;">New Request from #{request.try(:sender).try(:name)}</a>
-        %li.nav-link
-          = link_to 'Account', edit_user_registration_path, remote: true
-        %li.nav-link
-          = link_to 'Sign out', destroy_user_session_path, method: :delete
+          %li.nav-link.dropdown
+            %span.glyphicon.glyphicon-globe{onmouseover: "", style: "cursor: pointer;"}
+              - if current_user && current_user.unread_requests.any?
+                %ul.dropdown-menu.dropdown-select.received-requests
+                  - current_user.unread_requests.each do |request|
+                    - if request.id
+                      %li
+                        <a href="/requests/#{request.id}" class="user-link" data-remote="true" style="font-size:14px; text-align:center;">New Request from #{request.try(:sender).try(:name)}</a>
+          %li.nav-link
+            = link_to 'Account', edit_user_registration_path, remote: true
+          %li.nav-link
+            = link_to 'Sign out', destroy_user_session_path, method: :delete
 
   :javascript
     $(".glyphicon-envelope").click(function() {
