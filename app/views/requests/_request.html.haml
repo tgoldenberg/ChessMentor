@@ -19,12 +19,18 @@
     %h2 Game Request!
     %p You have been requested for a mentoring session with #{@request.sender.name}
     %p Here are the times that #{@request.sender.name} is available:
+    %p Please send a message to #{@request.sender.name} confirming a time, and at the appropriate time create a new chessgame to invite him/her to.
     %table.tables
       %tbody
         - @times.in_groups_of(3).each do |time|
           %tr
             - time.each do |t|
               %th #{t}
+  %hr
+  .button-wrapper
+    = link_to 'Message', new_conversation_path(sender_id: current_user.id, recipient_id: @request.sender.id), remote: true, class: 'button', id: 'message-button'
+    = link_to 'Create Game', new_invitation_path(sender_id: current_user.id, recipient_id: @request.sender.id), remote: true, class: 'button small-font invitation-button'
+
 
 :javascript
   $(function() {
