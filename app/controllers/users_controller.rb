@@ -3,13 +3,6 @@ respond_to :html, :js
 
 before_action :authenticate_user!
 
-  def search
-    if params[:search].present?
-      @mentors = Mentor.search(params[:search], fields: [{name: :word_start}])
-    else
-      @mentors = Mentor.all
-    end
-  end
 
   def show
     @user = User.find(params[:id])

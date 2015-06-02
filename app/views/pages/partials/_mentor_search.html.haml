@@ -5,7 +5,7 @@
     %p Search Mentors
     %div{style: 'clear: both;'}
 
-  %form.search-bar{role:'search'}
+  %form.search-bar{role:'search', action: '/mentors/search', data: {remote: true}, method: "get"}
     = text_field :search, params[:search], class: 'form-control', placeholder: 'search mentors', type: 'search', id: 'mentor-search-bar'
     %button{type: 'submit', id: 'search-submit', style: 'display: inline-block;'}
       %img{src: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png'}
@@ -18,7 +18,7 @@
           %li All
           %li Price
     .table-wrapper
-      %table.tables
+      %table.tables.mentor-search-wrapper
         %tbody{id: 'mentor-search-table'}
           - @mentors.each do |mentor|
             %tr
