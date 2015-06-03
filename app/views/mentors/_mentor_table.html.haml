@@ -1,0 +1,5 @@
+%tbody{id: 'mentor-search-table'}
+  - @searched_mentors.each do |mentor|
+    %tr
+      %td.grey-highlight
+        <a data-remote="true" href='/mentors/#{mentor.id}'> #{mentor.name} <span class="badge-success"> #{mentor.official_ranking} </span> </a>

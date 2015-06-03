@@ -9,10 +9,10 @@ before_action :authenticate_user!
   end
 
   def search
-    if params[:search].present?
-      @mentors = Mentor.search(params[:search], fields: [{name: :word_start}])
+    if params[:search] != [""]
+      @searched_mentors = Mentor.search(params[:search], fields: [{name: :word_start}])
     else
-      @mentors = Mentor.all
+      @searched_mentors = Mentor.all
     end
   end
 
