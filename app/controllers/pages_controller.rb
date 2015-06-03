@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @user = User.new
     @game = Game.new
     @users = User.all
+    @learners = Learner.all
     @conversation = Conversation.new
     if current_user
       @messages = current_user.received_messages.where(:read => false).select('DISTINCT sender_id')

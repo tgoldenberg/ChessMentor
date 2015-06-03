@@ -33,4 +33,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :learners do
+    collection do
+      get 'search'
+    end
+  end
+
 end
