@@ -9,6 +9,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @move = Move.new(:room_id => @game.id)
     @moves = @game.moves.all
+    @other_player = current_user == @game.player1 ? @game.player2 : @game.player1
     #Check to see if there is an existing conversation. If not, create a new one
   end
 

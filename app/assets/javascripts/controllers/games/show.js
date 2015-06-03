@@ -1,3 +1,3 @@
-// window.App.controllers.games.show = function() {
-//
-// }
+window.App.controllers.games.show = function() {
+
+}

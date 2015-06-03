@@ -4,33 +4,38 @@
       .player-profile{id: 'player1-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
-          %p #{@game.try(:player1).try(:name)}
+          %p #{@other_player.try(:name)}
           %span.glyphicon.glyphicon-minus
         %table.tables.player-content
           %tbody
             %tr
-              %td.grey-highlight Ranking: #{@game.try(:player1).try(:official_ranking)}
+              %td.grey-highlight Ranking: #{@other_player.official_ranking}
             %tr
-              %td.grey-highlight City: #{@game.try(:player1).try(:city)}
+              %td.grey-highlight City: #{@other_player.city}
             %tr
-              %td.grey-highlight Country #{@game.try(:player1).try(:country)}
-        .time-wrapper{id: 'time0'}
+              %td.grey-highlight Country #{@other_player.country}
+        - if current_user == @game.player1
+          .time-wrapper{id: 'time0'}
+        - else
+          .time-wrapper{id: 'time1'}
       %br/
       .player-profile.animated{id: 'player2-profile'}
         .player-header
           %span.glyphicon.glyphicon-user
-          %p #{@game.try(:player2).try(:name)}
+          %p #{@current_user.name}
           %span.glyphicon.glyphicon-minus
         %table.tables.player-content
           %tbody
             %tr
-              %td.grey-highlight Ranking: #{@game.try(:player2).try(:official_ranking)}
+              %td.grey-highlight Ranking: #{current_user.official_ranking}
             %tr
-              %td.grey-highlight City: #{@game.try(:player2).try(:city)}
+              %td.grey-highlight City: #{current_user.city}
             %tr
-              %td.grey-highlight Country: #{@game.try(:player2).try(:country)}
-
-        .time-wrapper{id: 'time1'}
+              %td.grey-highlight Country: #{current_user.country}
+        - if current_user == @game.player1
+          .time-wrapper{id: 'time1'}
+        - else
+          .time-wrapper{id: 'time0'}
 
     .board-wrapper{id: 'board'}
 
@@ -121,6 +126,16 @@
       var target = data.object_notation.split('-')[1]
       onDrop(data.object_notation.split('-')[0], data.object_notation.split('-')[1]);
       board.move(data.object_notation);
+      // castling rules
+      if (data.object_notation == "e1-g1") {
+        board.move("h1-f1");
+      } else if (data.object_notation == "e1-c1") {
+        board.move("a1-d1"); 
+      } else if (data.object_notation == "e8-c8") {
+        board.move("a8-d8");
+      } else if (data.object_notation == "e8-g8") {
+        board.move("h8-f8");
+      }
       board.move({from: source, to: target})
       switchTurn();
     });

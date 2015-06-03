@@ -1,4 +1,5 @@
 $('.notation-holder').append("<%= escape_javascript(render 'move') %>");
+switchTurn();
 
 if (game.in_checkmate() === true || game.in_draw() === true) {
   var loser = game.turn();
